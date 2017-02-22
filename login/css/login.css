@@ -1,0 +1,15 @@
+html,body{height:100%;}
+body{background:url(../images/loginbg.png) no-repeat; background-size:cover; overflow:hidden;}
+.foot{position:absolute; bottom:0; background:none;}
+.yd-loginTop{width:1000px; margin:50px auto 0; overflow:hidden;}
+.yd-loginTop .yd-adimg{width:700px; height:400px; border-radius:5px; float:left; overflow:hidden;}
+.yd-loginForm {float:right; width:280px; height:400px; padding:20px; background-color:rgba(255,255,255,0.2); border-radius:5px;}
+.yd-loginForm .yd-loginTitle{font-size:22px; line-height:30px; margin-bottom:30px; color:#fff; text-align:center;}
+.yd-loginForm .formgroup{margin-top:25px;}
+.yd-loginForm .yd-remember{color:#fff; line-height:16px; margin-bottom:0; margin-left:5px; float:left;}
+#rememberPWD{height:16px; width:16px; margin:0; float:left;}
+.yd-loginForm .login{width:100%; }
+.yd-loginForm .yd-forget{margin-top:30px;}
+.yd-loginForm .yd-forget a{float:right; color:#0066cc;}
+
+

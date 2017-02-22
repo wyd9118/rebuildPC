@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>学习</title>
+<meta charset="utf-8">
+<link rel="icon" href="images/icon.jpg">
+<link rel="stylesheet" type="text/css" href="../common/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="../common/css/common.css">
+<link rel="stylesheet" type="text/css" href="../common/css/pagination.css">
+<link rel="stylesheet" type="text/css" href="css/mycourse.css">
+</head>
+<body>
+	<!--#include virtual="../common/head.html" -->
+	<div class="yd-main">
+		<ul class="yd-radius5px yd-left-menu">
+			<li yd-data-role="1"><a href="###" class="a-focus">必修课程<span class="requireNum"> 0</span></a></li>
+			<li yd-data-role="2" ><a href="###">选修课程<span class="electNum"> 0</span></a></li>
+		</ul>
+		<div class="yd-radius5px yd-course-content">
+			<div class="yd-clear yd-course-list"></div>
+			
+			<script id="course-tmpl" type="text/x-jquery-tmpl">
+				<div class="yd-course">
+					<div class="yd-cover"><img src="${dealImage(cover)}" alt=""></div>
+					<h3>
+						<span class="yd-title">${common.cutStr(title,14)}</span>
+						<span class="yd-courseScore">${courseScore}</span>
+					</h3>
+					<p class="yd-summary">摘要：${common.cutStr(summary,24)}</p>
+					<div class="yd-course-info">
+						<span class="yd-courseBrow">${browNum}</span>
+						<span class="yd-coursePlay"><img src="images/play.png"></span>
+						<span class="yd-courseChoose">{{if isCollection}}<img src="images/u1405.png">{{else}}<img src="images/u1408.png">{{/if}}</span>
+						<span class="yd-studyStatus">学习状态：
+							{{if studySataus=="已完成"}}
+							<i style="color:#9ACD32;">${studySataus}</i>
+							{{else}}
+							<i style="color:#01c0dc;">${studySataus}</i>
+							{{/if}}
+						</span>				
+					</div>
+				</div>
+			</script>
+			<div id="Pagination" class="pagination"></div>
+		</div>
+	</div>
+	<!--#include virtual="../common/foot.html" -->
+
+<script type="text/javascript" src="../common/js/jquery.min.js"></script>
+<script type="text/javascript" src="../common/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../common/js/jquery.tmpl.min.js"></script>
+<script type="text/javascript" src="../common/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="../common/js/util.js"></script>
+<script type="text/javascript" src="../common/js/common.js"></script>
+<script type="text/javascript" src="../common/js/jquery.pagination.js"></script>
+<script type="text/javascript" src="js/mycourse.js"></script>
+</body>
+</html>
