@@ -1,0 +1,39 @@
+ul,ol{list-style:none;}
+.yd-clear:after{content:""; display:block; overflow:hidden; height:0; clear:both;}
+.yd-radius5px{border-radius:5px;}
+body{font:14px/25px "microsoft YaHei"; background:#f2f2f2;}
+.loading{width:100px; height:70px; position:absolute; top:300px; left:50%; margin-left:50px; text-align:center; display:none;}
+.loading img{width:50%;}
+.loading .loading-text{display:block; width:100%; height:20px; line-height:20px; font-size:20px; text-align:center;}
+.yd-head{height:80px; background:#fff; border-bottom:1px solid #bfbfbf;}
+.yd-container-top{height:80px; border:0;}
+.yd-container-top h1{margin:0;}
+.yd-container-top .logo img{height:100%;}
+.yd-container-top .navbar-nav{height:80px; padding-top:15px;}
+.yd-container-top .navbar-nav a{display:block; margin-left:0px; background:none !important;}
+.yd-person-btn{width:100px; padding-top:7px; }
+.yd-person-btn .btn{background:#fff;}
+.yd-person-btn .dropdown-menu{width:100px; min-width:0;text-align:center;}
+.yd-headInfo a{padding:0 15px !important;}
+.yd-headInfo .yd-headPic{width:50px; height:50px; border:0 none; float:left;}
+.yd-headInfo i{float:left; font-style:normal; margin-left:5px;}
+.yd-headInfo .yd-realname{display:block; height:30px; line-height:30px; font-size:12px;}
+.yd-headInfo .yd-sign{display:block; height:20px; line-height:20px; font-size:10px;}
+.yd-npr{padding-right:0;}
+.yd-head .yd-login a{display:inline-block;}
+.yd-head .yd-focus{color:#01c0dc;}
+
+a:focus{outline:none;}
+a{color:#000;}
+a:hover, a:active{color:#01c0dc; text-decoration: none;}
+.yd-main{width:1160px; margin:100px auto 0; overflow:hidden; } 
+.yd-main .yd-left-menu{width:180px; float:left; padding-start:0; -webkit-padding-start:0; -moz-padding-start:0; -o-padding-start:0; -ms-padding-start:0;}
+.yd-left-menu li a{display:block; width:100%; height:60px; line-height:60px; background:#fff; border-bottom:1px solid #ccc; text-align:center;}
+.yd-left-menu .a-focus{color:#01c0dc; border-left:2px solid #62cbd7; text-decoration:none;}
+.yd-course-content{margin-left:20px; width:960px; min-height:900px; float:left; padding:20px; background:#fff;}
+.yd-course-list{min-height:850px; padding-bottom:20px;}
+
+.foot{width:100%; height:80px; margin-top:20px; padding:15px 0; background:#ccc;}
+.foot p{font-size:14px; line-height:25px; margin:0; text-align:center; color:#000;}
+
+.alertInfo{width:200px; height:200px; padding:20px; border-radius:5px; background:#999; box-shadow:3px 3px 10px #666; font-size:16px; text-align:center;}
