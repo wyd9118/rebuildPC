@@ -23,14 +23,24 @@ body{font:14px/25px "microsoft YaHei"; background:#f2f2f2;}
 .yd-head .yd-login a{display:inline-block;}
 .yd-head .yd-focus{color:#01c0dc;}
 
-a:focus{outline:none;}
 a{color:#000;}
-a:hover, a:active{color:#01c0dc; text-decoration: none;}
+a:hover, a:active, a:focus{outline:none; color:#01c0dc !important; text-decoration: none;}
 .yd-main{width:1160px; margin:100px auto 0; overflow:hidden; } 
 .yd-main .yd-left-menu{width:180px; float:left; padding-start:0; -webkit-padding-start:0; -moz-padding-start:0; -o-padding-start:0; -ms-padding-start:0;}
 .yd-left-menu li a{display:block; width:100%; height:60px; line-height:60px; background:#fff; border-bottom:1px solid #ccc; text-align:center;}
 .yd-left-menu .a-focus{color:#01c0dc; border-left:2px solid #62cbd7; text-decoration:none;}
+/*搜索*/
+.yd-mycourse-tr{float:right;}
+.yd-find-form{float:left;}
+.yd-find-form .yd-find-fbox{display:table; height:34px;}
+.yd-find-form span, .yd-find-form input{display:table-cell; padding:6px 12px; border:1px solid #5FC8D5; vertical-align:middle; line-height:1.4; outline:none;}
+.yd-find-form .yd-ff-txt{border-right:0;}
+#keyWords{width:160px;height:34px; }
+#findBtn{background:#5FC8D5; height:34px; color:#fff;}
 .yd-course-content{margin-left:20px; width:960px; min-height:900px; float:left; padding:20px; background:#fff;}
+.yd-mycourse-path{width:50%; height:25px; line-height:25px; float:left; margin:0; padding:0;}
+.yd-mycourse-path li{display:inline-block;}
+.yd-after:after{display:inline-block; content:">"; padding:0 5px; }
 .yd-course-list{min-height:850px; padding-bottom:20px;}
 
 .foot{width:100%; height:80px; margin-top:20px; padding:15px 0; background:#ccc;}

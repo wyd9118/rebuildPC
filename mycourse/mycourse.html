@@ -17,6 +17,29 @@
 			<li yd-data-role="2" ><a href="###">选修课程<span class="electNum"> 0</span></a></li>
 		</ul>
 		<div class="yd-radius5px yd-course-content">
+			<div class="yd-clear">
+				<ul class="yd-mycourse-path">
+					<li class="yd-after"><a href="javascript:location.reload();">我的课程</a></li>
+					<li id="mycourse-which">必修课程</li>
+				</ul>
+				<div class="yd-mycourse-tr">
+					<div class="btn-group yd-status-menu">
+						<button class="btn " data-toggle="dropdown">学习状态</button>
+						<ul class="dropdown-menu">
+							<li><a href="###">未学习</a></li>
+							<li><a href="###">进行中</a></li>
+							<li><a href="###">已完成</a></li>
+						</ul>
+					</div>
+					<form class="yd-find-form">
+						<div class="yd-find-fbox">
+							<span class="yd-ff-txt">课程</span>
+							<input type="text" id="keyWords" placeholder="标题，摘要，正文">
+							<input type="button" id="findBtn" value="搜索">
+						</div>
+					</form>
+				</div>
+			</div>
 			<div class="yd-clear yd-course-list"></div>
 			
 			<script id="course-tmpl" type="text/x-jquery-tmpl">

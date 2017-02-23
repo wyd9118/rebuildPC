@@ -12,6 +12,7 @@ $(document).ready(function(){
 		if($(this).find("a").hasClass("a-focus")){
 			return;
 		}
+		$("#mycourse-which").html($(this).find("a").text().split(" ")[0]);
 		$(this).siblings().find("a").removeClass("a-focus");
 		$(this).find("a").addClass("a-focus");
 		var path,$courseNum;
