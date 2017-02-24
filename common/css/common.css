@@ -2,20 +2,25 @@ ul,ol{list-style:none;}
 .yd-clear:after{content:""; display:block; overflow:hidden; height:0; clear:both;}
 .yd-radius5px{border-radius:5px;}
 body{font:14px/25px "microsoft YaHei"; background:#f2f2f2;}
+
+a{color:#000;}
+a:hover, a:active, a:focus{outline:none; color:#01c0dc !important; text-decoration: none;}
+/* loading */
 .loading{width:100px; height:70px; position:absolute; top:300px; left:50%; margin-left:50px; text-align:center; display:none;}
 .loading img{width:50%;}
 .loading .loading-text{display:block; width:100%; height:20px; line-height:20px; font-size:20px; text-align:center;}
-.yd-head{height:80px; background:#fff; border-bottom:1px solid #bfbfbf;}
+/* 页面头部 */
+.yd-head{height:80px; background:#fff; border-bottom:1px solid #bfbfbf; font-size:16px;}
 .yd-container-top{height:80px; border:0;}
 .yd-container-top h1{margin:0;}
 .yd-container-top .logo img{height:100%;}
 .yd-container-top .navbar-nav{height:80px; padding-top:15px;}
 .yd-container-top .navbar-nav a{display:block; margin-left:0px; background:none !important;}
-.yd-person-btn{width:100px; padding-top:7px; }
-.yd-person-btn .btn{background:#fff;}
+.yd-person-btn{width:100px; }
+.yd-person-btn .btn{background:#fff; border:0 none; box-shadow:none;}
 .yd-person-btn .dropdown-menu{width:100px; min-width:0;text-align:center;}
 .yd-headInfo a{padding:0 15px !important;}
-.yd-headInfo .yd-headPic{width:50px; height:50px; border:0 none; float:left;}
+.yd-headInfo .yd-headPic{width:50px; height:50px; border-radius:50%; border:0 none; float:left;}
 .yd-headInfo i{float:left; font-style:normal; margin-left:5px;}
 .yd-headInfo .yd-realname{display:block; height:30px; line-height:30px; font-size:12px;}
 .yd-headInfo .yd-sign{display:block; height:20px; line-height:20px; font-size:10px;}
@@ -23,14 +28,22 @@ body{font:14px/25px "microsoft YaHei"; background:#f2f2f2;}
 .yd-head .yd-login a{display:inline-block;}
 .yd-head .yd-focus{color:#01c0dc;}
 
-a{color:#000;}
-a:hover, a:active, a:focus{outline:none; color:#01c0dc !important; text-decoration: none;}
 .yd-main{width:1160px; margin:100px auto 0; overflow:hidden; } 
+/* 主体部分左侧菜单 */
 .yd-main .yd-left-menu{width:180px; float:left; padding-start:0; -webkit-padding-start:0; -moz-padding-start:0; -o-padding-start:0; -ms-padding-start:0;}
 .yd-left-menu li a{display:block; width:100%; height:60px; line-height:60px; background:#fff; border-bottom:1px solid #ccc; text-align:center;}
 .yd-left-menu .a-focus{color:#01c0dc; border-left:2px solid #62cbd7; text-decoration:none;}
-/*搜索*/
+
 .yd-mycourse-tr{float:right;}
+/* 学习状态、选课状态 */
+.yd-status-menu{float:left; margin-right:20px; width:70px;}
+.yd-status-menu .btn{width:100%; background:#5FC8D5; color:#fff; outline:none; padding:6px 0; border-radius:4px !important;}
+.yd-status-menu .dropdown-menu{width:70px; min-width:0; top:100%; margin-top:0; left:50%; margin-left:-35px; text-align:center;}
+.yd-status-menu .dropdown-menu li{line-height:1.5;}
+.yd-status-menu .dropdown-menu a{padding:0;}
+.yd-status-menu .dropdown-menu a:hover{background:none;}
+
+/* 搜索 */
 .yd-find-form{float:left;}
 .yd-find-form .yd-find-fbox{display:table; height:34px;}
 .yd-find-form span, .yd-find-form input{display:table-cell; padding:6px 12px; border:1px solid #5FC8D5; vertical-align:middle; line-height:1.4; outline:none;}
@@ -43,6 +56,26 @@ a:hover, a:active, a:focus{outline:none; color:#01c0dc !important; text-decorati
 .yd-after:after{display:inline-block; content:">"; padding:0 5px; }
 .yd-course-list{min-height:850px; padding-bottom:20px;}
 
+/* 课程列表样式 */
+.yd-course{width:24%; height:240px; float:left; padding:5px; border:1px solid #ccc; margin:10px 12px 0 0;}
+.yd-course:nth-child(4n+4){margin-right:0;}
+.yd-cover{width:100%; height:120px; overflow:hidden;}
+.yd-cover img{width:100%; height:100%; border:0; cursor:pointer; transition:1s; -webkit-transition:1s; -moz-transition:1s; -o-transition:1s; -ms-transition:1s;}
+.yd-cover img:hover{transform:scale(1.5); -webkit-transform:scale(1.5); -moz-transform:scale(1.5); -o-transform:scale(1.5); -ms-transform:scale(1.5);}
+.yd-course h3{font-size:14px; height:40px; line-height:14px; padding:20px 0 6px; margin:0;}
+.yd-course h3 .yd-title{float:left; font-weight:bold;}
+.yd-course h3 .yd-courseScore{float:right;}
+.yd-course .yd-summary{font-size:12px; height:40px; line-height:20px; margin:0; display:-webkit-box; display:-moz-box; display:-o-box; display:-ms-flexbox;  display:box; -webkit-box-align:center; -moz-box-align:center; -o-box-align:center; -ms-flex-align:center; box-align:center;}
+.yd-course .yd-course-info{height:30px; line-height:30px; font-size:12px; }
+.yd-course .yd-course-info span{vertical-align:middle;}
+.yd-course .yd-chooseStatus i{display:block; width:65px; height:22px; line-height:22px; margin:4px 0; border-radius:3px; text-align:center;}
+.yd-course .yd-courseCollect img{height:14px; cursor:pointer;}
+.yd-course .yd-coursePlay{margin:0 3px;}
+.yd-course .yd-coursePlay img{height:14px;}
+/* 分页 */
+#Pagination{width:100%; text-align:center;}
+
+/* 页脚 */
 .foot{width:100%; height:80px; margin-top:20px; padding:15px 0; background:#ccc;}
 .foot p{font-size:14px; line-height:25px; margin:0; text-align:center; color:#000;}
 

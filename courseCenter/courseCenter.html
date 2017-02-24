@@ -7,29 +7,29 @@
 <link rel="stylesheet" type="text/css" href="../common/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="../common/css/common.css">
 <link rel="stylesheet" type="text/css" href="../common/css/pagination.css">
-<link rel="stylesheet" type="text/css" href="css/mycourse.css">
+<link rel="stylesheet" type="text/css" href="css/courseCenter.css">
 </head>
 <body>
 	<!--#include virtual="../common/head.html" -->
 	<div class="yd-main">
 		<ul class="yd-radius5px yd-left-menu">
-			<li yd-data-role="1"><a href="###" class="a-focus">必修课程<span class="requireNum"> 0</span></a></li>
-			<li yd-data-role="2" ><a href="###">选修课程<span class="electNum"> 0</span></a></li>
+			<li yd-data-role="1"><a href="###" class="a-focus">XXXXX</a></li>
+			<li yd-data-role="2" ><a href="###">XXXXX</a></li>
 		</ul>
 		<div class="yd-radius5px yd-course-content">
 			<div class="yd-clear">
 				<ul class="yd-mycourse-path">
-					<li class="yd-after"><a href="javascript:location.reload();">我的课程</a></li>
-					<li id="mycourse-which">必修课程</li>
+					<li class="yd-after"><a href="javascript:location.reload();">课程中心</a></li>
+					<li id="yd-center-pathtwo"></li>
+					<li id="yd-center-paththree"></li>
 				</ul>
 				<div class="yd-mycourse-tr">
 					<div class="btn-group yd-status-menu">
-						<button id="studyStatus" class="btn " data-toggle="dropdown">学习状态</button>
+						<button id="courseStatus" class="btn " data-toggle="dropdown">选课状态</button>
 						<ul class="dropdown-menu">
 							<li><a href="###">所有</a></li>
-							<li><a href="###">未学习</a></li>
-							<li><a href="###">学习中</a></li>
-							<li><a href="###">已完成</a></li>
+							<li><a href="###">已选</a></li>
+							<li><a href="###">未选</a></li>
 						</ul>
 					</div>
 					<form class="yd-find-form">
@@ -52,14 +52,14 @@
 					</h3>
 					<p class="yd-summary">摘要：${common.cutStr(summary,24)}</p>
 					<div class="yd-course-info">
-						<span class="yd-courseBrow">${browNum}</span>
-						<span class="yd-coursePlay"><img src="images/play.png"></span>
-						<span class="yd-courseCollect">{{if isCollection}}<img src="images/u1405.png">{{else}}<img src="images/u1408.png">{{/if}}</span>
-						<span class="yd-studyStatus">学习状态：
-							{{if studySataus=="已完成"}}
-							<i style="color:#9ACD32;">${studySataus}</i>
+						<span class="yd-courseCollect">{{if isCollection}}<img src="../common/images/u1405.png">{{else}}<img src="../common/images/u1408.png">{{/if}}</span>
+						<span class="yd-coursePlay"><img src="../common/images/play.png"></span>
+						<span class="yd-courseBrow">${browNumber}</span>
+						<span class="yd-chooseStatus">
+							{{if isChoose}}
+							<i style="background:#E4E4E4;">已选修</i>
 							{{else}}
-							<i style="color:#01c0dc;">${studySataus}</i>
+							<i style="background:#5FC8D5;">立即选修</i>
 							{{/if}}
 						</span>				
 					</div>
@@ -77,6 +77,6 @@
 <script type="text/javascript" src="../common/js/util.js"></script>
 <script type="text/javascript" src="../common/js/common.js"></script>
 <script type="text/javascript" src="../common/js/jquery.pagination.js"></script>
-<script type="text/javascript" src="js/mycourse.js"></script>
+<script type="text/javascript" src="js/courseCenter.js"></script>
 </body>
 </html>

@@ -4,6 +4,7 @@ common.ajaxPost = function(path,param,successback,failback){
 	var resturl = "http://test.strong365.com:80/welearning/api/";
 	param["companyCode"]='ruixue_test';
 	param["certificate"]=common.getCookie("certificate");
+	console.log("接口是（"+path+")；请求前传递参数：");
 	console.dir(param);
 	$.ajax({
 		url:resturl+path,
@@ -11,15 +12,15 @@ common.ajaxPost = function(path,param,successback,failback){
 		type:'post',
 		contentType:"application/x-www-form-urlencoded;charset=utf-8",
 		success:function(d){
+			console.log("接口是（"+path+")；请求后返回数据：")
 			console.dir(d);
 			if(successback){
 				successback(d);
 			}
 		},
 		error:function(d){
-			console.log(d);
 			if(failback){
-				errorback(d);
+				failback(d);
 			}
 		}
 
@@ -61,4 +62,22 @@ common.resolveUrl = function(url){
 		url = common.cdn+url;
 	}
 	return url;
+}
+
+// 根据location地址得到项目文件夹下绝对路径
+common.getAbsoluteUrl = function(name,path){ 
+	// name为项目文件夹名字，path为项目文件夹下的地址
+	var isName = "/"+name+"/";
+	var absoluteUrl = window.location.href.split(isName)[0]+isName;
+	return absoluteUrl+path;
+}
+
+common.dealImage = function(src){
+	var src = src;
+	if(src == null || src == ""){
+		src = common.getAbsoluteUrl("rebuild","common/images/cover0.png");
+	}else{
+		src = common.resolveUrl(src);
+	}
+	return src;
 }

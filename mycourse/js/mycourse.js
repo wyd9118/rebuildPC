@@ -1,21 +1,23 @@
-var pageIndex = 0;
-var pageSize = 24;
+
+var path = "member/myPcCompulsory";
+var $courseNum = $(".yd-left-menu .requireNum");
 $(document).ready(function(){
-	initCourse("member/myPcCompulsory",$(".yd-left-menu .requireNum"));
+	initCourse(path,$courseNum);
 	common.ajaxPost("member/myPcElective",{"memberId":common.getCookie("memberId"),},
 		function(d){
 			$(".yd-left-menu .electNum").html(" "+d.data[0].totalSize);
 		}
 	);
 
-	$(".yd-left-menu li").on("click",function(){
+	// 点击左侧菜单的必修课程或选修课程
+	$(".yd-left-menu li").on("click",function(event){
 		if($(this).find("a").hasClass("a-focus")){
 			return;
 		}
 		$("#mycourse-which").html($(this).find("a").text().split(" ")[0]);
 		$(this).siblings().find("a").removeClass("a-focus");
 		$(this).find("a").addClass("a-focus");
-		var path,$courseNum;
+		
 		if($(this).attr("yd-data-role")==1){
 			path = "member/myPcCompulsory";
 			$courseNum = $(".yd-left-menu .requireNum");
@@ -25,87 +27,22 @@ $(document).ready(function(){
 		}
 		initCourse(path,$courseNum);
 	});
-	
+
+	$(".yd-status-menu li a").on("click",function(event){
+		$("#courseStatus").text($(this).text());
+		//alert(path);
+		initCourse(path,null);
+	});
+
+	//根据关键字搜索相关课程
+	$("#findBtn").on("click",function(){
+		findKeyCourse(path);
+	});
+
+
 });
 
-function initCourse(path,$courseNum){
-	var param={
-		"pageSize":pageSize,
-		"pageNo":1,
-		"memberId":common.getCookie("memberId"),
-	};
-	$(".yd-course-list").empty();
-	$(".loading").fadeIn();
-	common.ajaxPost(path,param,
-		function(d){
-			if(d.data==null||d.data.length==0) 
-			{
-				$("Pagination").hide();
-				$(".loading").fadeOut(function(){
-					$(".yd-course-list").html("<h3 style='margin-top:200px; text-align:center; font-size:30px; color:#bbb;'>暂无课程！</h3>");
-					return;
-				});
-				
-			}else{
-				var totalSize = d.data[0].totalSize;
-				if(totalSize<=pageSize){
-					$("Pagination").hide();
-				}
-				$courseNum.html(" "+totalSize);
-				$("#Pagination").pagination(totalSize,
-					{
-						items_per_page:pageSize,
-						prev_text:"<img src='../common/images/left.png' width='20'>",
-						next_text:"<img src='../common/images/right.png' width='20'>",
-						callback:paginationBack,
-					}
 
-				);
-			}	
 
-		},
-		function(d){
-			console.dir(d);
-		}
-	);
 
-	function paginationBack(pageIndex,jq){
-		loadCourse(path,$courseNum,pageIndex);
-	}
-}
 
-function loadCourse(path,$courseNum,pageIndex){ 
-	var param={
-		"pageSize":pageSize,
-		"pageNo":pageIndex+1,
-		"memberId":common.getCookie("memberId"),
-	}; 
-	$(".yd-course-list").empty();
-	$(".loading").fadeIn();
-	common.ajaxPost(path,param,
-		function(d){  console.dir(d)
-			$(".loading").fadeOut(function(){
-				if(d.data==null||d.data.length==0){
-					$(".yd-course-list").html("<h3 style='margin-top:200px; text-align:center; font-size:30px; color:#bbb;'>课程加载失败，请重试！</h3>");
-					return;
-				}
-				//$courseNum.html(" "+d.data[0].totalSize.totalSize);
-				$("#course-tmpl").tmpl(d.data).appendTo(".yd-course-list");
-			}); 
-			
-		},
-		function(d){
-			console.dir(d);
-		}
-	);
-}
-
-function dealImage(src){
-	var src = src;
-	if(src == null || src == ""){
-		src = "images/cover0.png";
-	}else{
-		src = common.resolveUrl(src);
-	}
-	return src;
-}

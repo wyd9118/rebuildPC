@@ -1,23 +1,6 @@
 
-.yd-status-menu{float:left; margin-right:20px; width:70px;}
-.yd-status-menu .btn{width:100%; background:#5FC8D5; color:#fff; outline:none; padding:6px 0; }
-.yd-status-menu .dropdown-menu{width:70px; min-width:0; top:100%; margin-top:0; text-align:center;}
-.yd-status-menu .dropdown-menu li{line-height:1.5;}
-.yd-status-menu .dropdown-menu a{padding:0;}
-.yd-status-menu .dropdown-menu a:hover{background:none;}
-.yd-course{width:23%; height:240px; float:left; padding:5px; border:1px solid #ccc; margin:10px 10px 0 0;}
-.yd-cover{width:100%; height:120px; overflow:hidden;}
-.yd-cover img{width:100%; height:100%; border:0; cursor:pointer; transition:1s; -webkit-transition:1s; -moz-transition:1s; -o-transition:1s; -ms-transition:1s;}
-.yd-cover img:hover{transform:scale(1.5); -webkit-transform:scale(1.5); -moz-transform:scale(1.5); -o-transform:scale(1.5); -ms-transform:scale(1.5);}
-
-.yd-course h3{font-size:14px; height:40px; line-height:14px; padding:20px 0 6px; margin:0;}
-.yd-course h3 .yd-title{float:left; font-weight:bold;}
-.yd-course h3 .yd-courseScore{float:right;}
-.yd-course .yd-summary{font-size:12px; height:40px; line-height:20px; margin:0; display:-webkit-box; display:-moz-box; display:-o-box; display:-ms-flexbox;  display:box; -webkit-box-align:center; -moz-box-align:center; -o-box-align:center; -ms-flex-align:center; box-align:center;}
-.yd-course .yd-course-info{height:30px; line-height:30px; }
-.yd-course .yd-course-info span{font-size:12px; float:right; }
+.yd-course .yd-course-info span{float:right; }
 .yd-course i{font-style:normal;}
-.yd-course .yd-course-info .yd-studyStatus{color:; float:left; }
-.yd-course .yd-course-info .yd-courseChoose img{height:14px; cursor:pointer;}
-#Pagination{width:100%; text-align:center;}
+.yd-course .yd-course-info .yd-studyStatus{float:left; }
+
 
