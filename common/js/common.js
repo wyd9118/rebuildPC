@@ -11,8 +11,8 @@ $(function(){
 	});
 
 	// 处理logo和loading路径
-	$("#logo-img").attr("src",common.getAbsoluteUrl("rebuild","common/images/logo.png"));
-	$("#loading-img").attr("src",common.getAbsoluteUrl("rebuild","common/images/load.gif"));
+	$("#logo-img").attr("src",common.getAbsoluteUrl("common/images/logo.png"));
+	$("#loading-img").attr("src",common.getAbsoluteUrl("common/images/load.gif"));
 
 	// 初始化头像、签名
 	var certificate = common.getCookie("certificate");
@@ -52,6 +52,8 @@ $(function(){
 		if(e.keyCode == 13){$("#findBtn").click();}
 	});
 
+	// 文档图标icon
+	$("link#shortIcon").attr("href",common.getAbsoluteUrl("common/images/icon.jpg"));
 });
 
 
@@ -150,3 +152,31 @@ function loadCourse(path,pageIndex){
 function findKeyCourse(path){
 	initCourse(path,null);
 }
+
+function enterIntroduction(id,courseId){
+	window.location.href = "../courseDetail/courseIntroduction.html?contentId="+id+"courseId="+courseId;
+}
+
+function crumbPath (pageType,title){
+
+}
+
+function toggleCollection(contentId,contentType,obj){ 
+	var contentType = common.course_type_alias[contentType];
+	var param = {
+			"referenceId":contentId,
+			"memberId":common.getCookie("memberId"),
+			"type":contentType
+		};
+	var isCollection = eval(obj.attr("data-collection"));
+	if(isCollection){
+		var path = "contentCollection/deleteCollection";
+		var fn = function(){obj.attr("data-collection",false).attr("src",common.getAbsoluteUrl("common/images/u1408.png"))};
+	}else{
+		path = "contentCollection/insert";
+		fn = function(){obj.attr("data-collection",true).attr("src",common.getAbsoluteUrl("common/images/u1405.png"))};
+		param = {fields:"{reference_id:"+contentId+",member_id:"+param.memberId+",reference_type:'"+contentType+"'}"};
+	}
+	common.ajaxPost(path,param,fn);
+}
+

@@ -1,5 +1,15 @@
 var common = {};
+common.rootName = "rebuild";
 common.cdn = "http://cdn.strong365.com:80/";
+common.course_type_alias = {
+	"scorm系列课程" : 'seriesCourse',
+	"h5系列课程"    : 'seriesCourse',
+	"video系列课程" : 'seriesCourse',
+	"标准图文"      : "content",
+	"视频图文"      : "content",
+	"课件图文"      : "content",
+	"h5图文"       : "content"
+};
 common.ajaxPost = function(path,param,successback,failback){
 	var resturl = "http://test.strong365.com:80/welearning/api/";
 	param["companyCode"]='ruixue_test';
@@ -65,9 +75,9 @@ common.resolveUrl = function(url){
 }
 
 // 根据location地址得到项目文件夹下绝对路径
-common.getAbsoluteUrl = function(name,path){ 
+common.getAbsoluteUrl = function(path){ 
 	// name为项目文件夹名字，path为项目文件夹下的地址
-	var isName = "/"+name+"/";
+	var isName = "/"+common.rootName+"/";
 	var absoluteUrl = window.location.href.split(isName)[0]+isName;
 	return absoluteUrl+path;
 }
@@ -75,7 +85,7 @@ common.getAbsoluteUrl = function(name,path){
 common.dealImage = function(src){
 	var src = src;
 	if(src == null || src == ""){
-		src = common.getAbsoluteUrl("rebuild","common/images/cover0.png");
+		src = common.getAbsoluteUrl("common/images/cover0.png");
 	}else{
 		src = common.resolveUrl(src);
 	}

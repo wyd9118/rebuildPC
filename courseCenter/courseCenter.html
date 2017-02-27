@@ -3,7 +3,7 @@
 <head>
 <title>学习</title>
 <meta charset="utf-8">
-<link rel="icon" href="images/icon.jpg">
+<link id="shortIcon" rel="icon" href="../common/images/icon.jpg">
 <link rel="stylesheet" type="text/css" href="../common/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="../common/css/common.css">
 <link rel="stylesheet" type="text/css" href="../common/css/pagination.css">
@@ -45,17 +45,23 @@
 			
 			<script id="course-tmpl" type="text/x-jquery-tmpl">
 				<div class="yd-course">
-					<div class="yd-cover"><img src="${common.dealImage(cover)}" alt=""></div>
+					<div class="yd-cover" onclick="enterIntroduction(${id},'${type}',${courseId})"><img src="${common.dealImage(cover)}" alt=""></div>
 					<h3>
 						<span class="yd-title">${common.cutStr(title,14)}</span>
 						<span class="yd-courseScore">${courseScore}</span>
 					</h3>
 					<p class="yd-summary">摘要：${common.cutStr(summary,24)}</p>
 					<div class="yd-course-info">
-						<span class="yd-courseCollect">{{if isCollection}}<img src="../common/images/u1405.png">{{else}}<img src="../common/images/u1408.png">{{/if}}</span>
+						<span class="yd-courseCollection">
+							{{if isCollection}}
+							<img src="../common/images/u1405.png" data-collection="${isCollection}" onclick="toggleCollection(${id},'${type}',$(this))">
+							{{else}}
+							<img src="../common/images/u1408.png" data-collection="${isCollection}" onclick="toggleCollection(${id},'${type}',$(this))">
+							{{/if}}
+						</span>
 						<span class="yd-coursePlay"><img src="../common/images/play.png"></span>
 						<span class="yd-courseBrow">${browNumber}</span>
-						<span class="yd-chooseStatus">
+						<span class="yd-chooseStatus"  onclick="enterIndtroduction(${id},${type},${courseId})">
 							{{if isChoose}}
 							<i style="background:#E4E4E4;">已选修</i>
 							{{else}}

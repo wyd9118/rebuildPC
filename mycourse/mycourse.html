@@ -53,8 +53,14 @@
 					<p class="yd-summary">摘要：${common.cutStr(summary,24)}</p>
 					<div class="yd-course-info">
 						<span class="yd-courseBrow">${browNum}</span>
-						<span class="yd-coursePlay"><img src="images/play.png"></span>
-						<span class="yd-courseCollect">{{if isCollection}}<img src="images/u1405.png">{{else}}<img src="images/u1408.png">{{/if}}</span>
+						<span class="yd-coursePlay"><img src="../common/images/play.png"></span>
+						<span class="yd-courseCollection">
+							{{if isCollection}}
+							<img src="../common/images/u1405.png" data-collection="${isCollection}" onclick="toggleCollection(${id},'${type}',$(this))">
+							{{else}}
+							<img src="../common/images/u1408.png" data-collection="${isCollection}" onclick="toggleCollection(${id},'${type}',$(this))">
+							{{/if}}
+						</span>
 						<span class="yd-studyStatus">学习状态：
 							{{if studySataus=="已完成"}}
 							<i style="color:#9ACD32;">${studySataus}</i>

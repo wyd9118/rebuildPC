@@ -1,0 +1,5 @@
+.yd-courseDetail{width:900px; margin:0 auto; padding:20px; background:#fff; min-height:400px;}
+.yd-detailTop{height:30px; line-height:30px;}
+.yd-detailTop .yd-crumbPath{float:left;}
+.yd-detailTop .yd-courseBack{float:right;}
+.yd-detailTop .yd-courseBack a{display:block; width:60px; background:#169BD5; color:#fff; text-align:center;}
