@@ -91,3 +91,14 @@ common.dealImage = function(src){
 	}
 	return src;
 }
+
+// 获取页面url上的参数
+common.getUrlParam = function(name){
+	var reg = new RegExp("(^|&)"+name+"=([^&]*)(&|$)");
+	var arr = window.location.search.substring(1).match(reg);//url的？后的部分，如存在则返回["&name=value","&","value","&"](url中有&)或["name=value","","name=value",""](url中无&)
+	if(arr != null){
+		return decodeURI(arr[2]);
+	}else{
+		return null;
+	}
+}

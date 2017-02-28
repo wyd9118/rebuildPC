@@ -13,8 +13,8 @@
 	<!--#include virtual="../common/head.html" -->
 	<div class="yd-main">
 		<ul class="yd-radius5px yd-left-menu">
-			<li yd-data-role="1"><a href="###" class="a-focus">必修课程<span class="requireNum"> 0</span></a></li>
-			<li yd-data-role="2" ><a href="###">选修课程<span class="electNum"> 0</span></a></li>
+			<li yd-pageType="requireCourse"><a href="###" class="a-focus">必修课程<span class="requireNum"> 0</span></a></li>
+			<li yd-pageType="electCourse" ><a href="###">选修课程<span class="electNum"> 0</span></a></li>
 		</ul>
 		<div class="yd-radius5px yd-course-content">
 			<div class="yd-clear">
@@ -45,7 +45,7 @@
 			
 			<script id="course-tmpl" type="text/x-jquery-tmpl">
 				<div class="yd-course">
-					<div class="yd-cover"><img src="${common.dealImage(cover)}" alt=""></div>
+					<div class="yd-cover" onclick="enterIntroduction(${id},'${type}','electCourse',${courseId})"><img src="${common.dealImage(cover)}" alt=""></div>
 					<h3>
 						<span class="yd-title">${common.cutStr(title,14)}</span>
 						<span class="yd-courseScore">${courseScore}</span>

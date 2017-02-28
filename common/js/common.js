@@ -26,7 +26,7 @@ $(function(){
 	}
 
 	var headPic = common.getCookie("headPic");
-	var realname = common.getCookie("realname");
+	var realname = common.getCookie("realname"); 
 	var sign = common.getCookie("sign");
 	if(headPic){
 		headPic = common.resolveUrl(headPic);
@@ -153,8 +153,14 @@ function findKeyCourse(path){
 	initCourse(path,null);
 }
 
-function enterIntroduction(id,courseId){
-	window.location.href = "../courseDetail/courseIntroduction.html?contentId="+id+"courseId="+courseId;
+function enterIntroduction(id,type,pageType,courseId){
+	var courseType = common.course_type_alias[type];
+	if(courseType){
+		window.location.href = "../courseDetail/courseIntroduction.html?contentId="+id+"&courseType="+courseType+"&pageType="+pageType+"&courseId="+courseId;
+	}else{
+		window.location.href = "../courseDetail/courseIntroduction.html?contentId="+id+"&courseType="+type+"&pageType="+pageType+"&courseId="+courseId;
+	}
+	
 }
 
 function crumbPath (pageType,title){
@@ -180,3 +186,39 @@ function toggleCollection(contentId,contentType,obj){
 	common.ajaxPost(path,param,fn);
 }
 
+
+function crumbPath(pageType,title){
+	var title = common.cutStr(title,16);
+	switch(pageType){
+		case'requireCourse':
+			$("#path-one").attr("href",common.getAbsoluteUrl("mycourse/mycourse.html")).text("我的课程");
+			$("#path-two").attr("href",common.getAbsoluteUrl("mycourse/mycourse.html?pageType=requireCourse")).text("必修课程");
+			$("#path-three").text(title);
+			break;
+		case'electCourse':
+			$("#path-one").attr("href",common.getAbsoluteUrl("mycourse/mycourse.html")).text("我的课程");
+			$("#path-two").attr("href",common.getAbsoluteUrl("mycourse/mycourse.html?pageType=electCourse")).text("选修课程");
+			$("#path-three").text(title);
+			break;
+		case'courseCenter':
+			$("#path-one").attr("href",common.getAbsoluteUrl("courseCenter/courseCenter.html")).text("课程中心");
+			$("#path-two").attr("href",common.getAbsoluteUrl("courseCenter/courseCenter.html")).text("...");
+			$("#path-three").text(title);
+			break;
+		case'myCollect':
+			$("#path-one").attr("href",common.getAbsoluteUrl("personCenter/personCenter.html")).text("个人中心");
+			$("#path-two").attr("href",common.getAbsoluteUrl("personCenter/myCollect.html")).text("我的收藏");
+			$("#path-three").text(title);
+			break;
+	}
+}
+
+
+// 阻止默认行为的兼容写法
+function preventDefault(e){
+	if(document.all){
+		e.returnValue = false;
+	}else{
+		e.preventDefault();
+	}
+}

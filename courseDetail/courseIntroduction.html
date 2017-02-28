@@ -21,7 +21,17 @@
 				</div>
 				<div class="yd-courseBack"><a href="###" onclick="javascript:history.back(-1);" class="yd-radius5px">返回</a></div>
 			</div>
-			
+			<div class="yd-clear yd-detailMiddle"></div>
+			<script id="detail-tmpl" type="text/x-jquery-tmpl">
+				<div class="yd-detailCover">
+					<img src="${common.dealImage(cover)}" alt="简介图">
+				</div>
+				<div class="yd-detailInfo">
+					<h3>${title}</h3>
+					<div>选修人数&nbsp;${courseNumber}&nbsp;|&nbsp;播放人数&nbsp;${browNum}</div>
+					<p>${summary}</p>
+				</div>
+			</script>
 
 		</div>
 	</div>
@@ -34,6 +44,6 @@
 <script type="text/javascript" src="../common/js/util.js"></script>
 <script type="text/javascript" src="../common/js/common.js"></script>
 <script type="text/javascript" src="../common/js/jquery.pagination.js"></script>
-<script type="text/javascript" src="js/courseCenter.js"></script>
+<script type="text/javascript" src="js/courseDetail.js"></script>
 </body>
 </html>
