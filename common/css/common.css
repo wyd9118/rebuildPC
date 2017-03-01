@@ -1,6 +1,10 @@
 ul,ol{list-style:none;}
+i,em{font-style:normal;}
 .yd-clear:after{content:""; display:block; overflow:hidden; height:0; clear:both;}
 .yd-radius5px{border-radius:5px;}
+.yd-display-box{display:-webkit-box; display:-moz-box; display:-o-box; display:-ms-flexbox; display:box;}
+.yd-box-align{-webkit-box-align:center; -moz-box-align:center; -o-box-align:center; -ms-flex-align:center; box-align:center; /*水平居中*/}
+.yd-box-pack{-webkit-box-pack:center; -moz-box-pack:center; -o-box-pack:center; -ms-flex-pack:center; box-pack:center; /*水平居中*/}
 body{font:14px/25px "microsoft YaHei"; background:#f2f2f2;}
 
 a{color:#000;}

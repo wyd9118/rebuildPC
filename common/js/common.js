@@ -1,9 +1,9 @@
 $(function(){
-	$(".yd-head-right>li>a").each(function(){ //alert(444);
+	$(".yd-head-right>li>a").each(function(){ 
 		var winUrl = window.location.href;
 		var ishref = $(this).attr("href");
 		if(ishref)ishref = ishref.split("../")[1];
-		if(winUrl.indexOf(ishref) != -1){
+		if(ishref!=null && winUrl.indexOf(ishref)!= -1){
 			$(this).addClass("yd-focus");
 		}else{
 			$(this).removeClass("yd-focus");
@@ -167,7 +167,7 @@ function crumbPath (pageType,title){
 
 }
 
-function toggleCollection(contentId,contentType,obj){ 
+function toggleCollection(contentId,contentType,obj,sucessback){ 
 	var contentType = common.course_type_alias[contentType];
 	var param = {
 			"referenceId":contentId,
@@ -177,10 +177,16 @@ function toggleCollection(contentId,contentType,obj){
 	var isCollection = eval(obj.attr("data-collection"));
 	if(isCollection){
 		var path = "contentCollection/deleteCollection";
-		var fn = function(){obj.attr("data-collection",false).attr("src",common.getAbsoluteUrl("common/images/u1408.png"))};
+		var fn = function(){
+			obj.attr("data-collection",false).attr("src",common.getAbsoluteUrl("common/images/u1408.png"));
+			if(sucessback)sucessback();
+		};
 	}else{
 		path = "contentCollection/insert";
-		fn = function(){obj.attr("data-collection",true).attr("src",common.getAbsoluteUrl("common/images/u1405.png"))};
+		fn = function(){
+			obj.attr("data-collection",true).attr("src",common.getAbsoluteUrl("common/images/u1405.png"));
+			if(sucessback)sucessback();
+		};
 		param = {fields:"{reference_id:"+contentId+",member_id:"+param.memberId+",reference_type:'"+contentType+"'}"};
 	}
 	common.ajaxPost(path,param,fn);

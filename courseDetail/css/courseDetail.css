@@ -1,10 +1,19 @@
 .loading{margin-left:-50px;}
-.yd-courseDetail{width:900px; margin:0 auto; padding:20px; background:#fff; min-height:600px;}
+.yd-courseDetail{width:1000px; margin:0 auto; padding:20px; background:#fff; min-height:450px;}
 .yd-detailTop{height:30px; line-height:30px;}
 .yd-detailTop .yd-crumbPath{float:left; display:none;}
 .yd-detailTop .yd-courseBack{float:right;}
 .yd-detailTop .yd-courseBack a{display:block; width:60px; background:#169BD5; color:#fff; text-align:center;}
 
-.yd-detailMiddle .yd-detailCover{float:left;}
-.yd-detailMiddle .yd-detailCover img{width:400px; height:400px;}
-.yd-detailMiddle .yd-detailInfo{float:right;}
+.yd-detailMiddle .yd-detailCover{float:left; width:55%; height:400px; padding:15px 20px 10px 0; position:relative;}
+.yd-detailCover:after{content:""; position:absolute; right:0; top:5px; bottom:-0px; width:1px; background:#999;}
+.yd-detailMiddle .yd-detailCover img{display:block;width:100%; height:100%;}
+.yd-detailMiddle .yd-detailInfo{width:45%; height:400px; padding-left:20px; float:left; position:relative;}
+.yd-detailMiddle .yd-detailInfo h3{height:30px; line-height:30px; font-size:18px; font-weight:bold; margin:10px 0 0;}
+.yd-detailInfo .yd-detail-summary{margin-right:110px;}
+.yd-detailInfo .yd-yesCollection{position:absolute; top:50%; right:20px; margin-top:-20px;}
+.yd-detailInfo .yd-detailInfo-btn{position:absolute; bottom:10px; height:34px; line-height:34px;}
+.yd-detailInfo .yd-detailInfo-btn button{float:left; margin-right:15px; outline:none!important; border:0!important;}
+#delChoose{float:left; margin-right:15px;}
+.yd-detailInfo .yd-detailInfo-btn span{float:left; margin-right:5px;}
+.yd-detailInfo .yd-courseCollection img{height:14px; cursor:pointer;}

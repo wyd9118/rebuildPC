@@ -17,7 +17,7 @@
 				<div class="breadcrumb yd-crumbPath">
 					<li><a href="#" id="path-one">ggg</a></li>
 					<li><a href="#" id="path-two">444</a></li>
-					<li><a href="#" id="path-three">ggg</a></li>
+					<li><span id="path-three">ggg</span></li>
 				</div>
 				<div class="yd-courseBack"><a href="###" onclick="javascript:history.back(-1);" class="yd-radius5px">返回</a></div>
 			</div>
@@ -28,8 +28,28 @@
 				</div>
 				<div class="yd-detailInfo">
 					<h3>${title}</h3>
-					<div>选修人数&nbsp;${courseNumber}&nbsp;|&nbsp;播放人数&nbsp;${browNum}</div>
-					<p>${summary}</p>
+					<div>选修人数&nbsp;<span id="electNum">${courseNumber}</span>&nbsp;&nbsp;|&nbsp;&nbsp;播放人数&nbsp;${browNum}</div>
+					<p class="yd-detail-summary">${common.cutStr(summary,150)}</p>
+					<div class="yd-yesCollection" style="display:{{if isChoose}}block{{else}}none{{/if}};">
+						<img src="../common/images/yesCollection.png" width="106" height="76">
+					</div>
+					<div class="yd-detailInfo-btn">
+						{{if isChoose}}
+						<button id="learn-choose" class="btn btn-success" onclick="learnChoose($(this))">立即学习</button>
+						<a href="###" id="delChoose" onclick="delChoose()">取消选修</a>
+						{{else}}
+						<button id="learn-choose" class="btn btn-warning" onclick="learnChoose($(this))">立即选修</button>
+						<a href="###" id="delChoose" style="display:none;" onclick="delChoose()">取消选修</a>
+						{{/if}}
+						<span class="yd-courseCollection">
+							{{if isCollection}}
+							<img src="../common/images/u1405.png" data-collection="${isCollection}" onclick="dealCollection(${id},'${type}',$(this))">
+							{{else}}
+							<img src="../common/images/u1408.png" data-collection="${isCollection}" onclick="dealCollection(${id},'${type}',$(this))">
+							{{/if}}
+						</span>
+						<span class="yd-collectionNum">(<i>${collectionNum}</i>)</span>
+					</div>
 				</div>
 			</script>
 
