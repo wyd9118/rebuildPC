@@ -1,4 +1,3 @@
-var categoryId = null;
 (function($){
 	initCourse("courseCenterSelf/findMyCourse",null); //初始化课程中心课程列表
 

@@ -4,7 +4,7 @@ var path_pageType = {
 	"courseCenterSelf/findMyCourse" :"courseCenter",
 	""                              :"myCollect"
 };
-
+var categoryId = null;
 $(function(){
 	$(".yd-head-right>li>a").each(function(){ 
 		var winUrl = window.location.href;
@@ -151,12 +151,10 @@ function loadCourse(path,pageIndex){
 					return;
 				}
 				// 下面的if 添加一个当前页面课程分类
-				console.log(typeof(d.data));
-				if(typeof(d.data)=='array'){
-					d.data.push({"pageType":path_pageType[path]});
-				}else if(typeof(d.data)=='object'){
-					d.data["000"]={"pageType":path_pageType[path]};
+				for(var i in d.data){
+					d.data[i]["pageType"] = path_pageType[path];
 				}
+				
 				console.log(d.data);
 				$("#course-tmpl").tmpl(d.data).appendTo(".yd-course-list");
 			}); 
