@@ -12,16 +12,24 @@
 <body>
 	<!--#include virtual="../common/head.html" -->
 	<div class="yd-main">
-		<ul class="yd-radius5px yd-left-menu">
-			<li yd-data-role="1"><a href="###" class="a-focus">XXXXX</a></li>
-			<li yd-data-role="2" ><a href="###">XXXXX</a></li>
-		</ul>
+		<div class="yd-radius5px yd-left-menu">
+			<ul class="yd-courseCenter-mainmenu"></ul>
+			<script id="yd-mainmenu-tmpl" type="text/x-jquery-tmpl">
+				<li><a href="###">${name}</a></li>
+			</script>
+			<ul class="yd-courseCenter-submenu"></ul>
+			<script id="yd-submenu-tmpl" type="text/x-jquery-tmpl">
+				<li><a href="###">${name}</a></li>
+			</script>
+		</div>
+		
+		
 		<div class="yd-radius5px yd-course-content">
 			<div class="yd-clear">
-				<ul class="yd-mycourse-path">
-					<li class="yd-after"><a href="javascript:location.reload();">课程中心</a></li>
-					<li id="yd-center-pathtwo"></li>
-					<li id="yd-center-paththree"></li>
+				<ul class="breadcrumb yd-crumbPath">
+					<li><a href="#">课程中心</a></li>
+					<li><a href="###" id="crumb-two"></a></li>
+					<li><a href="###" id="crumb-three"></a></li>
 				</ul>
 				<div class="yd-mycourse-tr">
 					<div class="btn-group yd-status-menu">
@@ -45,7 +53,7 @@
 			
 			<script id="course-tmpl" type="text/x-jquery-tmpl">
 				<div class="yd-course">
-					<div class="yd-cover" onclick="enterIntroduction(${id},'${type}',${courseId})"><img src="${common.dealImage(cover)}" alt=""></div>
+					<div class="yd-cover" onclick="enterIntroduction(${id},'${type}',${courseId},${pageType})"><img src="${common.dealImage(cover)}" alt=""></div>
 					<h3>
 						<span class="yd-title">${common.cutStr(title,14)}</span>
 						<span class="yd-courseScore">${courseScore}</span>

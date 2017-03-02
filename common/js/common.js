@@ -1,3 +1,10 @@
+var path_pageType = {
+	"member/myPcCompulsory"         :"requireCourse",
+	"member/myPcElective"           :"electCourse",
+	"courseCenterSelf/findMyCourse" :"courseCenter",
+	""                              :"myCollect"
+};
+
 $(function(){
 	$(".yd-head-right>li>a").each(function(){ 
 		var winUrl = window.location.href;
@@ -62,12 +69,14 @@ var pageSize = 24; //每页显示的课程数
 
 // 加载课程封装函数
 function initCourse(path,$courseNum){
+	if(!categoryId){categoryId = null;}
 	var param={
 		"pageSize":pageSize,
 		"pageNo":1,
 		"memberId":common.getCookie("memberId"),
 		"studySataus":$("#courseStatus").text(),
-		"keyword":$("#keyWords").val(),		
+		"keyword":$("#keyWords").val(),	
+		"categoryId":categoryId	
 	}; 
 	if(param["keyword"]==$("#keyWords").attr("placeholder")){
 		param["keyword"]="";
@@ -118,12 +127,14 @@ function initCourse(path,$courseNum){
 }
 // loadCourse为加载课程列表，是initCourse的调用函数
 function loadCourse(path,pageIndex){ 
+	if(!categoryId){categoryId = null;}
 	var param={
 		"pageSize":pageSize,
 		"pageNo":pageIndex+1,
 		"memberId":common.getCookie("memberId"),
 		"studySataus":$("#courseStatus").text(),
-		"keyword":$("#keyWords").val(),		
+		"keyword":$("#keyWords").val(),	
+		"categoryId":categoryId	
 	}; 
 	if(param["keyword"]==$("#keyWords").attr("placeholder")){
 		param["keyword"]="";
@@ -139,6 +150,14 @@ function loadCourse(path,pageIndex){
 					$(".yd-course-list").html("<h3 style='margin-top:200px; text-align:center; font-size:30px; color:#bbb;'>未找到相应课程！</h3>");
 					return;
 				}
+				// 下面的if 添加一个当前页面课程分类
+				console.log(typeof(d.data));
+				if(typeof(d.data)=='array'){
+					d.data.push({"pageType":path_pageType[path]});
+				}else if(typeof(d.data)=='object'){
+					d.data["000"]={"pageType":path_pageType[path]};
+				}
+				console.log(d.data);
 				$("#course-tmpl").tmpl(d.data).appendTo(".yd-course-list");
 			}); 
 			
@@ -153,19 +172,16 @@ function findKeyCourse(path){
 	initCourse(path,null);
 }
 
-function enterIntroduction(id,type,pageType,courseId){
+function enterIntroduction(id,type,courseId,pageType){
 	var courseType = common.course_type_alias[type];
 	if(courseType){
-		window.location.href = "../courseDetail/courseIntroduction.html?contentId="+id+"&courseType="+courseType+"&pageType="+pageType+"&courseId="+courseId;
+		window.location.href = "../courseDetail/courseIntroduction.html?contentId="+id+"&courseType="+courseType+"&courseId="+courseId+"&pageType="+pageType;
 	}else{
-		window.location.href = "../courseDetail/courseIntroduction.html?contentId="+id+"&courseType="+type+"&pageType="+pageType+"&courseId="+courseId;
+		window.location.href = "../courseDetail/courseIntroduction.html?contentId="+id+"&courseType="+type+"&courseId="+courseId+"&pageType="+pageType;
 	}
 	
 }
 
-function crumbPath (pageType,title){
-
-}
 
 function toggleCollection(contentId,contentType,obj,sucessback){ 
 	var contentType = common.course_type_alias[contentType];
@@ -208,7 +224,8 @@ function crumbPath(pageType,title){
 			break;
 		case'courseCenter':
 			$("#path-one").attr("href",common.getAbsoluteUrl("courseCenter/courseCenter.html")).text("课程中心");
-			$("#path-two").attr("href",common.getAbsoluteUrl("courseCenter/courseCenter.html")).text("...");
+			var crumStr = $("#crumb-two").text()||"...";
+			$("#path-two").text(crumStr).removeAttr("href");
 			$("#path-three").text(title);
 			break;
 		case'myCollect':

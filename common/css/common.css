@@ -1,6 +1,7 @@
 ul,ol{list-style:none;}
 i,em{font-style:normal;}
-.yd-clear:after{content:""; display:block; overflow:hidden; height:0; clear:both;}
+body,ul,ol,li,dl,dt,dd,p,form,h1,h2,h3,h4,h5,h6{margin:0;padding:0;}
+.yd-clear:after{content:""; display:block; overflow:hidden; height:0; clear:both; overflow:hidden;}
 .yd-radius5px{border-radius:5px;}
 .yd-display-box{display:-webkit-box; display:-moz-box; display:-o-box; display:-ms-flexbox; display:box;}
 .yd-box-align{-webkit-box-align:center; -moz-box-align:center; -o-box-align:center; -ms-flex-align:center; box-align:center; /*水平居中*/}
@@ -8,7 +9,9 @@ i,em{font-style:normal;}
 body{font:14px/25px "microsoft YaHei"; background:#f2f2f2;}
 
 a{color:#000;}
-a:hover, a:active, a:focus{outline:none; color:#01c0dc !important; text-decoration: none;}
+a:hover, a:active{outline:none; color:#01c0dc !important; text-decoration: none;}
+a:focus{outline:none; color:#000; text-decoration: none;}
+
 /* loading */
 .loading{width:100px; height:70px; position:absolute; top:300px; left:50%; margin-left:50px; text-align:center; display:none;}
 .loading img{width:50%;}
@@ -34,15 +37,18 @@ a:hover, a:active, a:focus{outline:none; color:#01c0dc !important; text-decorati
 
 .yd-main{width:1160px; margin:100px auto 0; overflow:hidden; } 
 /* 主体部分左侧菜单 */
-.yd-main .yd-left-menu{width:180px; float:left; padding-start:0; -webkit-padding-start:0; -moz-padding-start:0; -o-padding-start:0; -ms-padding-start:0;}
-.yd-left-menu li a{display:block; width:100%; height:60px; line-height:60px; background:#fff; border-bottom:1px solid #ccc; text-align:center;}
+.yd-main .yd-left-menu{width:180px; min-height:400px; _height:400px; float:left; background:#fff; padding-start:0; -webkit-padding-start:0; -moz-padding-start:0; -o-padding-start:0; -ms-padding-start:0;}
+.yd-left-menu li a{display:block; width:100%; height:60px; line-height:60px; border-bottom:1px solid #ccc; text-align:center;}
 .yd-left-menu .a-focus{color:#01c0dc; border-left:2px solid #62cbd7; text-decoration:none;}
+.yd-left-menu li:first-child a{ border-top:1px solid #ccc;}
 
-.yd-mycourse-tr{float:right;}
-
-/* 重写面包屑路径 */
-.yd-crumbPath{padding:0; margin:0; background:#fff;}
+/* 重写面包屑样式 */
+.yd-crumbPath{float:left; padding:0; margin:0; background:#fff;}
 .yd-crumbPath>li+li:before{content:"＞";}
+.yd-mycourse-tr{float:right; overflow:hidden;}
+
+
+
 /* 学习状态、选课状态 */
 .yd-status-menu{float:left; margin-right:20px; width:70px;}
 .yd-status-menu .btn{width:100%; background:#5FC8D5; color:#fff; outline:none; padding:6px 0; border-radius:4px !important;}
