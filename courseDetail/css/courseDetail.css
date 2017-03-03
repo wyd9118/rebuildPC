@@ -9,7 +9,7 @@
 .yd-detailCover:after{content:""; position:absolute; right:0; top:5px; bottom:-0px; width:1px; background:#999;}
 .yd-detailMiddle .yd-detailCover img{display:block;width:100%; height:100%;}
 .yd-detailMiddle .yd-detailInfo{width:45%; height:400px; padding-left:20px; float:left; position:relative;}
-.yd-detailMiddle .yd-detailInfo h3{height:30px; line-height:30px; font-size:18px; font-weight:bold; margin:10px 0 0;}
+.yd-detailMiddle .yd-detailInfo h3{width:100%; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; height:30px; line-height:30px; font-size:16px; font-weight:bold; margin:10px 0 0;}
 .yd-detailInfo .yd-detail-summary{margin-right:110px;}
 .yd-detailInfo .yd-yesCollection{position:absolute; top:50%; right:20px; margin-top:-20px;}
 .yd-detailInfo .yd-detailInfo-btn{position:absolute; bottom:10px; height:34px; line-height:34px;}

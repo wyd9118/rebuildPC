@@ -19,12 +19,12 @@
 		<div class="yd-radius5px yd-course-content">
 			<div class="yd-clear">
 				<ul class="yd-mycourse-path">
-					<li class="yd-after"><a href="javascript:location.reload();">我的课程</a></li>
+					<li class="yd-after">我的课程</li>
 					<li id="mycourse-which">必修课程</li>
 				</ul>
 				<div class="yd-mycourse-tr">
 					<div class="btn-group yd-status-menu">
-						<button id="studyStatus" class="btn " data-toggle="dropdown">学习状态</button>
+						<button id="courseStatus" class="btn " data-toggle="dropdown">学习状态</button>
 						<ul class="dropdown-menu">
 							<li><a href="###">所有</a></li>
 							<li><a href="###">未学习</a></li>
@@ -52,22 +52,25 @@
 					</h3>
 					<p class="yd-summary">摘要：${common.cutStr(summary,24)}</p>
 					<div class="yd-course-info">
-						<span class="yd-courseBrow">${browNum}</span>
-						<span class="yd-coursePlay"><img src="../common/images/play.png"></span>
-						<span class="yd-courseCollection">
-							{{if isCollection}}
-							<img src="../common/images/u1405.png" data-collection="${isCollection}" onclick="toggleCollection(${id},'${type}',$(this))">
-							{{else}}
-							<img src="../common/images/u1408.png" data-collection="${isCollection}" onclick="toggleCollection(${id},'${type}',$(this))">
-							{{/if}}
-						</span>
-						<span class="yd-studyStatus">学习状态：
+						<div class="yd-studyStatus pull-left">学习状态：
 							{{if studySataus=="已完成"}}
-							<i style="color:#9ACD32;">${studySataus}</i>
+							<span style="color:#9ACD32;">${studySataus}</span>
 							{{else}}
-							<i style="color:#01c0dc;">${studySataus}</i>
+							<span style="color:#01c0dc;">${studySataus}</span>
 							{{/if}}
-						</span>				
+						</div>
+						<div class="yd-courseInfo-img pull-right">
+							<span class="yd-courseBrow">${browNum}</span>
+							<span class="yd-coursePlay"><img src="../common/images/play.png"></span>
+							<span class="yd-courseCollection">
+								{{if isCollection}}
+								<img src="../common/images/u1405.png" data-collection="${isCollection}" onclick="toggleCollection(${id},'${type}',$(this))">
+								{{else}}
+								<img src="../common/images/u1408.png" data-collection="${isCollection}" onclick="toggleCollection(${id},'${type}',$(this))">
+								{{/if}}
+							</span>
+						</div>
+										
 					</div>
 				</div>
 			</script>

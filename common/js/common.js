@@ -4,7 +4,8 @@ var path_pageType = {
 	"courseCenterSelf/findMyCourse" :"courseCenter",
 	""                              :"myCollect"
 };
-var categoryId = null;
+var categoryId = null; //categoryId为课程中心主、子菜单列表项的id
+var data_pcon = ""; //data_pcon是个人中心页面分类
 $(function(){
 	$(".yd-head-right>li>a").each(function(){ 
 		var winUrl = window.location.href;
@@ -51,16 +52,20 @@ $(function(){
 
 	$(".yd-exit").on("click",function(){
 		common.setCookie("certificate","");
-		window.location.href = "../index.html";
-	});
-
-	// 监听搜索框enter键事件
-	$("#keyWords").keydown(function(e){
-		if(e.keyCode == 13){$("#findBtn").click();}
+		window.location.href = common.getAbsoluteUrl("index.html");
 	});
 
 	// 文档图标icon
 	$("link#shortIcon").attr("href",common.getAbsoluteUrl("common/images/icon.jpg"));
+
+	// 头部个人中心跳转
+	$("#personBtn>li>a").on("click",function(e){
+		data_pcon = $(this).attr("data-pcon");  
+		common.setCookie("data_pcon",data_pcon);
+		window.location.href = common.getAbsoluteUrl("personCenter/personCenter.html");
+		preventDefault(e);
+	});
+
 });
 
 
@@ -150,12 +155,10 @@ function loadCourse(path,pageIndex){
 					$(".yd-course-list").html("<h3 style='margin-top:200px; text-align:center; font-size:30px; color:#bbb;'>未找到相应课程！</h3>");
 					return;
 				}
-				// 下面的if 添加一个当前页面课程分类
+				// 下面的for 为每个data数据添加一个当前页面课程分类
 				for(var i in d.data){
 					d.data[i]["pageType"] = path_pageType[path];
 				}
-				
-				console.log(d.data);
 				$("#course-tmpl").tmpl(d.data).appendTo(".yd-course-list");
 			}); 
 			
@@ -166,10 +169,12 @@ function loadCourse(path,pageIndex){
 	);
 }
 
+// 加载关键词课程
 function findKeyCourse(path){
 	initCourse(path,null);
 }
 
+// 跳到课程介绍页面
 function enterIntroduction(id,type,courseId,pageType){
 	var courseType = common.course_type_alias[type];
 	if(courseType){
@@ -180,7 +185,7 @@ function enterIntroduction(id,type,courseId,pageType){
 	
 }
 
-
+// 添加或取消收藏
 function toggleCollection(contentId,contentType,obj,sucessback){ 
 	var contentType = common.course_type_alias[contentType];
 	var param = {
@@ -206,13 +211,13 @@ function toggleCollection(contentId,contentType,obj,sucessback){
 	common.ajaxPost(path,param,fn);
 }
 
-
+// 面包屑路径
 function crumbPath(pageType,title){
 	var title = common.cutStr(title,16);
 	switch(pageType){
 		case'requireCourse':
 			$("#path-one").attr("href",common.getAbsoluteUrl("mycourse/mycourse.html")).text("我的课程");
-			$("#path-two").attr("href",common.getAbsoluteUrl("mycourse/mycourse.html?pageType=requireCourse")).text("必修课程");
+			$("#path-two").attr("href",common.getAbsoluteUrl("mycourse/mycourse.html")).text("必修课程");
 			$("#path-three").text(title);
 			break;
 		case'electCourse':
@@ -232,6 +237,27 @@ function crumbPath(pageType,title){
 			$("#path-three").text(title);
 			break;
 	}
+}
+
+// 改变学习或选课状态、点击搜索、搜索框回车处理函数
+function courseStatusClick(p){ 
+	path = p||path; 
+	$(document).on("click","#courseStatus+ul>li>a",function(e){
+		$("#courseStatus").text($(this).text());
+		initCourse(path,null);
+		preventDefault(e);
+	})
+	.on("click","#findBtn",function(e){
+		initCourse(path,null);
+		preventDefault(e);
+	})
+	.on("keydown","#keyWords",function(e){
+		if(e.keyCode == 13){
+			initCourse(path,null);
+			preventDefault(e);
+		}
+	});
+
 }
 
 

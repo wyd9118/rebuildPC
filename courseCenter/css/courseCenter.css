@@ -1,5 +1,6 @@
 /* yd-left-menu */
 .yd-left-menu{position:relative; }
+.yd-left-menu li:first-child a{ border-top:1px solid #ccc;}
 .yd-left-menu .a-focus{border-right:1px solid #fff; position:relative; right:-1px; z-index:1;}
 .yd-courseCenter-submenu{width:400px; height:400px; padding:10px 30px; position:absolute; top:0; right:-400px; background:rgba(255,255,255,0.97); border:1px solid #ccc; display:none;}
 .yd-courseCenter-submenu li{float:left;}
@@ -7,6 +8,3 @@
 
 /*.yd-crumbPath li:not(:first-child){display:none;}*/
 .yd-crumbPath li:nth-child(3){display:none;}
-
-.yd-course .yd-course-info span{float:left; }
-.yd-course .yd-course-info .yd-chooseStatus{color:#fff; float:right !important; }

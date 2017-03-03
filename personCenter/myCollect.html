@@ -1,0 +1,78 @@
+<div class="yd-clear">
+	<h2 class="person-h">我的收藏</h2>
+	<div class="yd-mycourse-tr">
+		<div class="btn-group yd-status-menu">
+			<button id="courseStatus" class="btn " data-toggle="dropdown">学习状态</button>
+			<ul class="dropdown-menu">
+				<li><a href="###">所有</a></li>
+				<li><a href="###">未学习</a></li>
+				<li><a href="###">学习中</a></li>
+				<li><a href="###">已完成</a></li>
+			</ul>
+		</div>
+		<form class="yd-find-form">
+			<div class="yd-find-fbox">
+				<span class="yd-ff-txt">课程</span>
+				<input type="text" id="keyWords" placeholder="标题，摘要，正文">
+				<input type="button" id="findBtn" value="搜索">
+			</div>
+		</form>
+	</div>
+</div>
+<div class="yd-clear yd-course-list"></div>
+
+<script id="course-tmpl" type="text/x-jquery-tmpl">
+	<div class="yd-course">
+		<div class="yd-cover" onclick="enterIntroduction(${id},'${type}',${courseId},'${pageType}')"><img src="${common.dealImage(cover)}" alt=""></div>
+		<h3>
+			<span class="yd-title">${common.cutStr(title,14)}</span>
+			<span class="yd-courseScore">${courseScore}</span>
+		</h3>
+		<p class="yd-summary">摘要：${common.cutStr(summary,24)}</p>
+		<div class="yd-course-info">
+			{{if isChoose}}
+			<div class="yd-studyStatus pull-left">学习状态：
+				{{if studySataus=="已完成"}}
+				<span style="color:#9ACD32;">${studySataus}</span>
+				{{else}}
+				<span style="color:#01c0dc;">${studySataus}</span>
+				{{/if}}
+			</div>
+			<div class="yd-courseInfo-img pull-right">
+				<span class="yd-courseCollection">
+					{{if isCollection}}
+					<img src="../common/images/u1405.png" data-collection="${isCollection}" onclick="toggleCollection(${id},'${type}',$(this))">
+					{{else}}
+					<img src="../common/images/u1408.png" data-collection="${isCollection}" onclick="toggleCollection(${id},'${type}',$(this))">
+					{{/if}}
+				</span>
+				<span class="yd-coursePlay"><img src="../common/images/play.png"></span>
+				<span class="yd-courseBrow">${browNumber}</span>
+			</div>
+			{{else}}
+			<div class="yd-courseInfo-img pull-left">
+				<span class="yd-courseCollection">
+					{{if isCollection}}
+					<img src="../common/images/u1405.png" data-collection="${isCollection}" onclick="toggleCollection(${id},'${type}',$(this))">
+					{{else}}
+					<img src="../common/images/u1408.png" data-collection="${isCollection}" onclick="toggleCollection(${id},'${type}',$(this))">
+					{{/if}}
+				</span>
+				<span class="yd-coursePlay"><img src="../common/images/play.png"></span>
+				<span class="yd-courseBrow">${browNumber}</span>
+			</div>
+			<div class="yd-chooseStatus pull-right"  onclick="enterIndtroduction(${id},${type},${courseId})">
+				{{if isChoose}}
+				<span style="background:#E4E4E4;">已选修</span>
+				{{else}}
+				<span style="background:#5FC8D5;">立即选修</span>
+				{{/if}}
+			</div>	
+			{{/if}}
+			
+							
+		</div>
+	</div>
+</script>
+<div id="Pagination" class="pagination"></div>
+<script type="text/javascript" src="js/myCollect.js"></script>

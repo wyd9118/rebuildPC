@@ -60,22 +60,24 @@
 					</h3>
 					<p class="yd-summary">摘要：${common.cutStr(summary,24)}</p>
 					<div class="yd-course-info">
-						<span class="yd-courseCollection">
-							{{if isCollection}}
-							<img src="../common/images/u1405.png" data-collection="${isCollection}" onclick="toggleCollection(${id},'${type}',$(this))">
-							{{else}}
-							<img src="../common/images/u1408.png" data-collection="${isCollection}" onclick="toggleCollection(${id},'${type}',$(this))">
-							{{/if}}
-						</span>
-						<span class="yd-coursePlay"><img src="../common/images/play.png"></span>
-						<span class="yd-courseBrow">${browNumber}</span>
-						<span class="yd-chooseStatus"  onclick="enterIndtroduction(${id},${type},${courseId})">
+						<div class="yd-courseInfo-img pull-left">
+							<span class="yd-courseCollection">
+								{{if isCollection}}
+								<img src="../common/images/u1405.png" data-collection="${isCollection}" onclick="toggleCollection(${id},'${type}',$(this))">
+								{{else}}
+								<img src="../common/images/u1408.png" data-collection="${isCollection}" onclick="toggleCollection(${id},'${type}',$(this))">
+								{{/if}}
+							</span>
+							<span class="yd-coursePlay"><img src="../common/images/play.png"></span>
+							<span class="yd-courseBrow">${browNumber}</span>
+						</div>
+						<div class="yd-chooseStatus pull-right"  onclick="enterIndtroduction(${id},${type},${courseId})">
 							{{if isChoose}}
-							<i style="background:#E4E4E4;">已选修</i>
+							<span style="background:#E4E4E4;">已选修</span>
 							{{else}}
-							<i style="background:#5FC8D5;">立即选修</i>
+							<span style="background:#5FC8D5;">立即选修</span>
 							{{/if}}
-						</span>				
+						</div>				
 					</div>
 				</div>
 			</script>
