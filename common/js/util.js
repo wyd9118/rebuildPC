@@ -13,7 +13,10 @@ common.course_type_alias = {
 common.ajaxPost = function(path,param,successback,failback){
 	var resturl = "http://test.strong365.com:80/welearning/api/";
 	param["companyCode"]='ruixue_test';
-	param["certificate"]=common.getCookie("certificate");
+	if(!param.certificate){
+		param["certificate"]=common.getCookie("certificate");
+	}
+	
 	console.log("接口是（"+path+")；请求前传递参数：");
 	console.dir(param);
 	$.ajax({

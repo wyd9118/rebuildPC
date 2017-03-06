@@ -2,7 +2,7 @@
 	initCourse("courseCenterSelf/findMyCourse",null); //初始化课程中心课程列表
 
 	// 点击选课状态分类课程或搜索
-	courseStatusClick("courseCenterSelf/findMyCourse");
+	loadKeyCourse("courseCenterSelf/findMyCourse");
 
 	var sub_items = {};
 	var param = {

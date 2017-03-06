@@ -1,0 +1,33 @@
+
+<div class="yd-clear">
+	<h2 class="person-h">学习记录</h2>
+</div>
+<div class="yd-clear yd-course-list yd-learnRecord">
+	<div class="yd-learnRecord-line"></div>
+	<ul id="learnRecord-list"></ul>
+	<script id="learnRecord-tmpl" type="text/x-jquery-tmpl">
+		<li>
+			<div class="yd-learnRecord-time">${formatTime(create_time)}</div>
+			<div class="yd-learnRecord-content">
+				<dl class="yd-clear">
+					<dt><img src="${common.dealImage(cover)}" alt="" width="180" height="150"></dt>
+					<dd>
+						<p class="yd-clear">
+							<span class="yd-learnRecord-title">${common.cutStr(title,40)}</span>
+							{{if course_score}}
+							<span  class="yd-learnRecord-score">课程得分：${course_score}分</span>
+							{{/if}}
+						</p>
+						<div class="yd-clear">
+							<span class="yd-learnRecord-summary">${common.cutStr(summary,80)}</span>
+							<a href="../courseDetail/study.html?contentId=${id}&contentType=${type}&courseId=${courseId}&pageType=learnRecord" class="yd-radius5px yd-learnRecord-learn">继续学习</a>
+						</div>
+						
+					</dd>
+				</dl>
+			</div>
+		</li>
+	</script>
+</div>
+<div id="Pagination" class="pagination"></div>
+<script type="text/javascript" src="js/learnRecord.js"></script>

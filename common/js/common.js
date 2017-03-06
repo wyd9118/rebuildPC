@@ -2,7 +2,7 @@ var path_pageType = {
 	"member/myPcCompulsory"         :"requireCourse",
 	"member/myPcElective"           :"electCourse",
 	"courseCenterSelf/findMyCourse" :"courseCenter",
-	""                              :"myCollect"
+	"contentCollection/myPcCollection":"myCollect"
 };
 var categoryId = null; //categoryId为课程中心主、子菜单列表项的id
 var data_pcon = ""; //data_pcon是个人中心页面分类
@@ -233,14 +233,14 @@ function crumbPath(pageType,title){
 			break;
 		case'myCollect':
 			$("#path-one").attr("href",common.getAbsoluteUrl("personCenter/personCenter.html")).text("个人中心");
-			$("#path-two").attr("href",common.getAbsoluteUrl("personCenter/myCollect.html")).text("我的收藏");
+			$("#path-two").attr("href",common.getAbsoluteUrl("personCenter/personCenter.html")).text("我的收藏");
 			$("#path-three").text(title);
 			break;
 	}
 }
 
 // 改变学习或选课状态、点击搜索、搜索框回车处理函数
-function courseStatusClick(p){ 
+function loadKeyCourse(p){ 
 	path = p||path; 
 	$(document).on("click","#courseStatus+ul>li>a",function(e){
 		$("#courseStatus").text($(this).text());
@@ -268,4 +268,22 @@ function preventDefault(e){
 	}else{
 		e.preventDefault();
 	}
+}
+
+
+
+Date.prototype.Format = function (fmt) { //author: meizz 
+    var o = {
+        "M+": this.getMonth() + 1, //月份 
+        "d+": this.getDate(), //日 
+        "h+": this.getHours(), //小时 
+        "m+": this.getMinutes(), //分 
+        "s+": this.getSeconds(), //秒 
+        "q+": Math.floor((this.getMonth() + 3) / 3), //季度 
+        "S": this.getMilliseconds() //毫秒 
+    };
+    if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+    for (var k in o)
+    if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+    return fmt;
 }

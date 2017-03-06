@@ -46,7 +46,7 @@ $(document).ready(function(){
 	});
 
 	// 点击学习状态或搜索
-	courseStatusClick();
+	loadKeyCourse();
 
 });
 
