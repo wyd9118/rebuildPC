@@ -34,7 +34,7 @@ function initIntegral(path){
 		memberId:common.getCookie("memberId"),
 		days:integral_day
 	};
-	$(".loading").fadeOut();
+	
 	common.ajaxPost(path,integral_param,
 		function(d){ //请求成功
 			if(d.data=="" || d.data==null || d.data.records.length==0){
@@ -46,7 +46,7 @@ function initIntegral(path){
 			}else{
 				$("#Pagination").show();
 			}
-			$("#myIntegral-table").show();
+			
 			//console.dir(d);
 			$("#Pagination").pagination(
 				d.data.records.length,
@@ -75,25 +75,29 @@ function paginationIntegral(path,pageIndex){
 		pageNo:pageIndex + 1,
 		pageSize:integral_pageSize,
 	};
-
+	$(".loading").fadeIn();
 	common.ajaxPost(path,integral_param,function(d){
-		if(d.data=="" || d.data==null || d.data.records.length==0){
-			$("#myIntegral-table").replaceWith("<h2 style='text-align:center; color:#bbb; font-size:30px; margin-top:200px;'>未找到积分内容！</h2>");
-			return;
-		}
-		$("#myIntegral-table>tbody").empty();
-		$.each(d.data.records,function(){
-			var tmpl = "<tr><td>@time</td><td>@score</td><td>@content</td></tr>";
-			var score = this.score;
-			if(score>0){
-				score = "<span style='color:#009933'>+"+score+"</span>";
-			}else{
-				score = "<span style='color:#FF0000'>+"+score+"</span>";
+		$(".loading").fadeOut(function(){
+
+			if(d.data=="" || d.data==null || d.data.records.length==0){
+				$("#myIntegral-table").replaceWith("<h2 style='text-align:center; color:#bbb; font-size:30px; margin-top:200px;'>未找到积分内容！</h2>");
+				return;
 			}
-			var tmpl = tmpl.replace("@time",new Date(this.time).Format("yyyy-MM-dd hh : mm : ss")).replace("@score",score).replace("@content",this.content);
-			$("#myIntegral-table>tbody").append($(tmpl));
+			$("#myIntegral-table").show();
+			$("#myIntegral-table>tbody").empty();
+			$.each(d.data.records,function(){
+				var tmpl = "<tr><td>@time</td><td>@score</td><td>@content</td></tr>";
+				var score = this.score;
+				if(score>0){
+					score = "<span style='color:#009933'>+"+score+"</span>";
+				}else{
+					score = "<span style='color:#FF0000'>+"+score+"</span>";
+				}
+				var tmpl = tmpl.replace("@time",new Date(this.time).Format("yyyy-MM-dd hh : mm : ss")).replace("@score",score).replace("@content",this.content);
+				$("#myIntegral-table>tbody").append($(tmpl));
+			});
+
 		});
-		
 
 	});
 }

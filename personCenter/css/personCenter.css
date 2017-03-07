@@ -4,25 +4,40 @@
 .yd-learnRecord{position:relative;}
 .yd-learnRecord-line{position:absolute; left:10%; top:0; bottom:0; width:8px; background:#EEEFF1;}
 #learnRecord-list li{overflow:hidden;}
-.yd-learnRecord-time{float:left; width:10%; height:30px; line-height:30px;}
+.yd-learnRecord-time{float:left; width:10%; height:30px; line-height:30px; color:#ccc;}
 .yd-learnRecord-time:after{content:""; width:10px; height:10px; border-radius:50%; background:#B9C2CE;}
 .yd-learnRecord-content{float:right; width:88%; height:250px; padding:30px 20px 30px 50px; background:url(../img/learningRerord001.png) center center; background-size:100% 100%;}
 .yd-learnRecord-content dl{height:100%; padding:10px; background:#F8F8F8;}
 .yd-learnRecord-content dl dt{float:left; height:100%;}
 .yd-learnRecord-content dl dt img{vertical-align:middle;}
 .yd-learnRecord-content dl dd{float:left; width:70%; height:100%; padding-left:20px; position:relative;}
-.yd-learnRecord-title, .yd-learnRecord-score{float:left; height:30px; line-height:30px; font-size:16px; margin-bottom:10px; color:#66668f;}
+.yd-learnRecord-title, .yd-learnRecord-score{float:left; height:40px; line-height:40px; font-size:16px; color:#66668f;}
 .yd-learnRecord-content .yd-learnRecord-title{ font-weight:bold;}
 .yd-learnRecord-content .yd-learnRecord-score{margin-left:30px; float:right; color:#5FC8D5;}
 .yd-learnRecord-summary{width:70%; float:left;}
 .yd-learnRecord-learn{position:absolute; right:0px; top:50%; width:80px; height:40px; padding:10px; color:#fff; background:#188EEE;}
+
+/* 消息通知 */
+.yd-notice-btn a{float:left; padding:0 10px; height:30px; line-height:30px; border:1px solid #5FC8D5; color:#5FC8D5; margin-left:10px;}
+#notice-list{padding-top:15px;}
+#notice-list li.yd-notice-li{position:relative; min-height:120px; padding:15px 15px 15px 100px; margin-bottom:20px; border:1px solid #ddd; background:url(../img/u2918.png) no-repeat 15px 20px #f8f8f8; background-size:75px 75px;}
+.yd-notice-ctop span, .yd-notice-ctop a{float:left; height:30px; line-height:30px; margin-bottom:5px; border-bottom:1px solid #ddd; font-weight:bold; color:#575757; }
+.yd-notice-title{width:75%;}
+.yd-notice-time{width:22%;}
+#notice-del img{float:left;}
+.yd-notice-cbottom .yd-cbottom-content{width:80%;}
+.yd-notice-cbottom .yd-cbottom-copen{display:none;}
+#noticeToggle{position:absolute; right:20px; bottom:20px; font-size:16px; color:#0099FF;}
+
 
 /* 我的积分页面 */
 .yd-myIntegral-type a{float:left; padding:0 10px; height:30px; line-height:30px; border:1px solid #5FC8D5; color:#5FC8D5; margin-left:10px;}
 .yd-meIntegral{}
 .yd-totalIntegral{margin-top:15px; display:none;}
 #myIntegral-table{width:100%; display:none;}
-#myIntegral-table th, #myIntegral-table td{padding:8px 0; border:1px solid #ddd; text-align:center; color:#999;}
+#myIntegral-table th, #myIntegral-table td{padding:10px 0; border:1px solid #ddd; text-align:center; color:#999;}
 #myIntegral-table th{background:#F5F5F5; font-size:16px;}
 #myIntegral-table tr:not(first-child):hover{background:#F5F5F5;}
 
+/* 个人信息页面 */
+.yd-person-formL{float:left; line-height:30px;}
