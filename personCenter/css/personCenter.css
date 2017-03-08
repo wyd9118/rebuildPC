@@ -40,4 +40,16 @@
 #myIntegral-table tr:not(first-child):hover{background:#F5F5F5;}
 
 /* 个人信息页面 */
-.yd-person-formL{float:left; line-height:30px;}
+.yd-personInfo-formL{float:left; line-height:20px; padding:20px 0 0 40px;}
+.yd-personInfo-formL input, .yd-personInfo-formL textarea{border:0 none; border:1px solid #fff; background:none; outline:none; padding:3px;}
+.yd-personInfo-formL input[type="text"]{width:160px;}
+.yd-personInfo-formL .yd-personInfo-div{margin-bottom:20px;}
+.yd-personInfo-formL textarea{width:160px; height:28px; resize:none; vertical-align:middle;}
+
+.yd-personInfo-btn{margin-top:20px;}
+#personInfo-save{width:80px; height:40px; margin-right:30px; border:0 none; outline:none;}
+#personInfo-setpwd{width:80px; height:40px; border:0 none; outline:none;}
+
+.yd-personInfo-formR{float:left; width:150px; margin-left:300px; text-align:center; line-height: 50px;}
+.yd-upload-headpic{color:#00CC99; width:100%; overflow:hidden; position:relative;}
+.yd-personInfo-formR input[type="file"]{position:absolute; right:0; bottom:0; opacity:0; cursor:pointer;}

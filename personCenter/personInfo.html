@@ -3,19 +3,25 @@
 	<h2 class="person-h">个人信息</h2>
 </div>
 <div class="yd-clear yd-course-list">
-	<form action="" method="" id="personInfo_form">
-		<div class="yd-person-formL">
-			<div>姓名：<span class="yd-person_name"></span></div>
-			<div>性别：<input type="radio" name="person_sex"><input type="radio" name="person_sex"></div>
-			<div>手机：<span class="yd-person_phone"></span></div>
-			<div>职位：<span class="yd-person_post"></span></div>
-			<div>签名：<textarea class="yd-person_sign"></textarea></div>
-			<div>部门：<span class="yd-person_section"></span></div>
+	<form action="" method="" id="personInfo-form">
+		<div class="yd-personInfo-formL">
+			<div class="yd-personInfo-div">姓名：<input type="text" name="personInfo-name" disabled></div>
+			<div class="yd-personInfo-div">性别：<input type="radio" name="personInfo-sex" value="男" disabled> 男&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="personInfo-sex" value="女" disabled> 女</div>
+			<div class="yd-personInfo-div">手机：<input type="text" name="personInfo-phone" disabled></div>
+			<div class="yd-personInfo-div">职位：<input type="text" name="personInfo-post" disabled></div>
+			<div class="yd-personInfo-div">签名：<textarea class="personInfo-sign" disabled></textarea></div>
+			<div class="yd-personInfo-div">部门：<span class="personInfo-department"></span><!-- <input type="text" name="personInfo-department" disabled> --></div>
 		</div>
-		<div class="yd-person-formR">
-			
+		<div class="yd-personInfo-formR">
+			<p>头像</p>
+			<div><img src="" alt="" width="120" height="120" class="yd-personInfo-headPic"></div>
+			<div class="yd-upload-headpic">上传头像<input type="file" id="upload-headpic"></div>
+		</div>
+		<div class="yd-clear"></div>
+		<div class="text-center yd-personInfo-btn">
+			<input id="personInfo-save" type="button" class="btn btn-success" value="修改信息">
+			<input id="personInfo-setpwd" type="button" class="btn btn-warning" value="修改密码">
 		</div>
 	</form>
 </div>
-<div id="Pagination" class="pagination"></div>
-<script type="text/javascript" src="js/notice.js"></script>
+<script type="text/javascript" src="js/personInfo.js"></script>
