@@ -1,5 +1,6 @@
 var common = {};
 common.rootName = "rebuild";
+common.servleturl = "http://120.26.101.143:80/welearning/";
 common.cdn = "http://cdn.strong365.com:80/";
 common.course_type_alias = {
 	"scorm系列课程" : 'seriesCourse',
