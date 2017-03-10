@@ -1,4 +1,6 @@
 
+<link type="text/css" rel="stylesheet" href="../common/css/modifyStep.css">
+<link type="text/css" rel="stylesheet" href="../common/css/idcode.css">
 <div class="yd-clear">
 	<h2 class="person-h">个人信息</h2>
 </div>
@@ -20,8 +22,51 @@
 		<div class="yd-clear"></div>
 		<div class="text-center yd-personInfo-btn">
 			<input id="personInfo-save" type="button" class="btn btn-success" value="修改信息">
-			<input id="personInfo-setpwd" type="button" class="btn btn-warning" value="修改密码">
+			<input id="personInfo-modifypwd" type="button" class="btn btn-warning" value="修改密码">
+		</div>
+
+		<!-- 修改密码 -->
+		<div class="yd-modify-pwd">
+			<ol class="yd-step">
+				<li class="yd-step-one active">
+					<div class="yd-step-contNum">1</div>
+					<div class="yd-step-contText">验证身份</div>
+				</li>
+				<li class="yd-step-two">
+					<div class="yd-step-contNum">2</div>
+					<div class="yd-step-contText">更改密码</div>
+				</li>
+				<li class="yd-step-three">
+					<div class="yd-step-contNum">√</div>
+					<div class="yd-step-contText">完成</div>
+				</li>
+			</ol>
+			<!-- 第一步：身份验证 -->
+			<div class="yd-form-step yd-form-step1 step-doing">
+				<div class="yd-form-div">请输入密码：<input type="password" placeholder="请输入密码" name="now-pwd"></div>
+				<div class="yd-form-div">输入验证码：<input type="text" placeholder="验证码" name="step1-idcode" id="idcode1-txt">
+					<div id="idcode1"></div>
+				</div>
+				<div class="yd-form-div"><input type="button" class="btn btn-success" value="提交" id="step1-submit"></div>
+			</div>
+			<!-- 第二步：更改密码 -->
+			<div class="yd-form-step yd-form-step2">
+				<div class="yd-form-div">请输入新的密码：<input type="password" placeholder="输入新密码" name="new-pwd"></div>
+				<div class="yd-form-div">再次输入新密码：<input type="password" placeholder="再次输入新密码" name="renew-pwd"></div>
+				<div class="yd-form-div">请输入验证码：&nbsp;&nbsp;&nbsp;<input type="text" placeholder="验证码" name="step2-idcode" id="idcode2-txt">
+					<div id="idcode2"></div>
+				</div>
+				<div class="yd-form-div"><input type="button" class="btn btn-success" value="提交" id="step2-submit"></div>
+			</div>
+			<!-- 第三步：完成 -->
+			<div class="yd-form-step yd-form-step3">
+				<div class="yd-form-div yd-step3-txt">
+					密码更改成功！
+				</div>
+				<div class="yd-form-div"><input type="button" class="btn btn-success" value="确定" id="step3-submit"></div>
+			</div>
 		</div>
 	</form>
 </div>
 <script type="text/javascript" src="js/personInfo.js"></script>
+<script type="text/javascript" src="../common/js/idcode.js"></script>

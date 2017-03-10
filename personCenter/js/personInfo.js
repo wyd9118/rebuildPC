@@ -1,4 +1,4 @@
-$(function(){
+$(function(){ 
 	var headPicPath = "";
 	initPersonInfo();
 	$(document).on("click","#personInfo-save",function(e){ // 点击修改、保存按钮
@@ -65,7 +65,7 @@ $(function(){
 				cxt.drawImage(img,0,0,iw,ih);
 				var imgsrc = canvas.toDataURL(mime_type,0.1);
 
-				$(".yd-personInfo-headPic").attr("src",imgsrc); //图片预览*/
+				$(".yd-personInfo-headPic").attr("src",imgsrc); //图片预览
 
 				var data = imgsrc.split(",")[1]; 
 				data = window.atob(data);
@@ -93,7 +93,14 @@ $(function(){
 				});
 			};
 		}
-	});
+	})
+	.on("click","#personInfo-modifypwd",function(e){
+		$(".yd-modify-pwd").toggle();
+		$.idcode.setCode({e:'idcode1',inputID:'idcode1-txt'});
+	})
+	.on("click","#step1-submit",checkStepOne)
+	.on("click","#step2-submit",checkStepTwo)
+	.on("click","#step3-submit",checkStepThree);
 
 	
 
@@ -127,4 +134,103 @@ function initPersonInfo(){
 
 	);
 
+}
+
+
+// 修改密码验证身份提交
+function checkStepOne(){
+	var now_pwd = $("input[name=now-pwd").val();
+	var idcode = $("input[name=step1-idcode").val();
+	if(!now_pwd){
+		alert("密码不能为空！");
+		return;
+	}
+	if(!idcode){
+		alert("请输入验证码！");
+		return;
+	}
+	var param = {
+			"username":common.getCookie("user"),
+			"password":now_pwd,
+			"appId":"welearning_wechat",
+			"appSecret":"learn2strong"
+		};  
+	common.ajaxPost("login/validateLogin",param,
+		function(d){ //请求成功
+			if(d.errorCode != 0){
+				alert(d.errorMassage);
+				return;
+			} 
+			if($.idcode.validateCode() == true){
+				$(".yd-form-step1 input").not("input:button").val("");
+				$(".yd-step-two").addClass("active");
+				$(".yd-form-step1").removeClass("step-doing").next(".yd-form-step2").addClass("step-doing");
+				$.idcode.setCode({e:'idcode2',inputID:'idcode2-txt'});
+			}else{
+				alert("验证码不正确！");
+			}
+		},
+		function(d){ //请求失败
+			alert(d);
+		}
+	);
+
+}
+
+function checkStepTwo(){
+	var pwd = common.getCookie("pwd");
+	var newpwd = $("input[name=new-pwd]").val();
+	var renewpwd = $("input[name=renew-pwd]").val();
+	var idcode = $("input[name=step2-idcode]").val();
+	if(!newpwd){
+		alert("新密码不能为空！");
+		return;
+	}
+	if(!renewpwd){
+		alert("请再次输入密码！");
+		return;
+	}
+	if(newpwd != renewpwd){
+		alert("两次密码输入不一致！");
+		return;
+	}
+	if(newpwd == pwd){
+		alert("新密码不能和原来密码一样!");
+		return;
+	}
+	if(!idcode){
+		alert("请输入验证码！");
+		return;
+	}else{
+		if($.idcode.validateCode()){
+			var fields = {
+				password:newpwd,
+			};
+			var param = {
+				fields:JSON.stringify(fields),
+				id:common.getCookie("personId")
+			}; $(".yd-form-step2 input").not("input:button").val("");
+			common.ajaxPost("person/update",param,
+				function(d){
+				common.setCookie("pwd",newpwd);
+				$(".yd-form-step2 input").not("input:button").val("");
+				$(".yd-step-three").addClass("active");
+				$(".yd-form-step2").removeClass("step-doing").next(".yd-form-step3").addClass("step-doing");
+				},
+				function(d){
+					alert("更改密码失败，请重试！"+"---"+d);
+					return false;
+				}
+			);
+			$(".yd-step-three").addClass("active");
+				$(".yd-form-step2").removeClass("step-doing").next(".yd-form-step3").addClass("step-doing");
+		}
+	}
+
+}
+
+function checkStepThree(){
+	$(".yd-modify-pwd").hide();
+	$(".yd-step-one").siblings("li").removeClass("active");
+	$(".yd-form-step3").removeClass("step-doing").siblings(".yd-form-step1").addClass("step-doing");
 }

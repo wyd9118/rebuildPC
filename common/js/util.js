@@ -50,6 +50,7 @@ common.setCookie = function(key,value,t){
 
 //截取字符串
 common.cutStr = function(str,len){
+	// var str = str.replace(/<([^>]*)>/g,"");
 	var cutstr = new String();
 	var str_len = 0;
 	for(var i=0; i<str.length; i++){

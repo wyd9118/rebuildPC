@@ -1,5 +1,6 @@
 ul,ol{list-style:none;}
 i,em{font-style:normal;}
+input[type="button"]{border:0 none; outline:none!important;}
 body,ul,ol,li,dl,dt,dd,p,form,h1,h2,h3,h4,h5,h6{margin:0;padding:0;}
 .yd-clear:after{content:""; display:block; overflow:hidden; height:0; clear:both; overflow:hidden;}
 .yd-radius5px{border-radius:5px;}

@@ -47,9 +47,19 @@
 .yd-personInfo-formL textarea{width:160px; height:28px; resize:none; vertical-align:middle;}
 
 .yd-personInfo-btn{margin-top:20px;}
-#personInfo-save{width:80px; height:40px; margin-right:30px; border:0 none; outline:none;}
-#personInfo-setpwd{width:80px; height:40px; border:0 none; outline:none;}
+#personInfo-save{width:80px; height:35px; margin-right:30px; border:0 none; outline:none;}
+#personInfo-modifypwd{width:80px; height:35px; border:0 none; outline:none;}
 
 .yd-personInfo-formR{float:left; width:150px; margin-left:300px; text-align:center; line-height: 50px;}
 .yd-upload-headpic{color:#00CC99; width:100%; overflow:hidden; position:relative;}
 .yd-personInfo-formR input[type="file"]{position:absolute; right:0; bottom:0; opacity:0; cursor:pointer;}
+
+.yd-modify-pwd{width:70%; margin:70px auto 0; display:none;}
+.yd-form-step{width:70%; margin:0 auto; display:none;}
+.yd-form-div{margin-bottom:20px;}
+#step1-submit{width:100px; margin:10px 0 0 100px; height:35px;}
+#idcode1, #idcode2{display:inline-block;}
+.step-doing{display:block;}
+#step2-submit{width:100px; margin:10px 0 0 140px; height:35px;}
+.yd-step3-txt{text-align:center; font-size:18px; font-weight:bold;}
+#step3-submit{width:100px; display:block; margin:10px auto 0; height:35px;}

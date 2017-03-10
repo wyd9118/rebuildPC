@@ -66,6 +66,16 @@ $(function(){
 		preventDefault(e);
 	});
 
+	$(document).on("click",".logo>a",function(e){
+		window.location.href = common.getAbsoluteUrl("index.html");
+		preventDefault(e);
+	})
+	.on("click",".yd-headInfo>a",function(e){
+		common.setCookie("data-pcon","personInfo");
+		window.location.href = common.getAbsoluteUrl("personCenter/personCenter.html");
+		preventDefault(e);
+	});
+
 });
 
 
