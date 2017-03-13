@@ -4,6 +4,7 @@ var path_pageType = {
 	"courseCenterSelf/findMyCourse" :"courseCenter",
 	"contentCollection/myPcCollection":"myCollect"
 };
+
 var categoryId = null; //categoryId为课程中心主、子菜单列表项的id
 var data_pcon = ""; //data_pcon是个人中心页面分类
 $(function(){

@@ -25,7 +25,7 @@ $(function(){
 		}
 	);
 
-	/*$("#learn-choose").on("click",function(){ //立即选修
+	/*$("#learn-choose").on("click",function(){ alert(444) //立即选修
 		if($(this).hasClass("btn-warning")){
 			var param1 = {
 				member_id:common.getCookie("memberId"),
@@ -39,16 +39,15 @@ $(function(){
 				$("#delChoose").show();
 			});
 		}else{
-			window.location.href = "study.html";
+			window.location.href = "courseStudy.html";
 		}
 		
 	});
 	$("#delChoose").on("click",function(){ //取消选修
-		alert(44);
 		common.ajaxPost("courseCenterSelf/deleteCourse",param,function(){
-				$("#learn-choose").removeClass("btn-success").addClass("btn-warning").text("立即选修");
-				$("#delChoose").hide();
-			});
+			$("#learn-choose").removeClass("btn-success").addClass("btn-warning").text("立即选修");
+			$("#delChoose").hide();
+		});
 	});*/
 
 
@@ -92,7 +91,7 @@ function learnChoose(obj){ //立即选修
 			
 		});
 	}else{
-		// window.location.href = "study.html";
+		window.location.href = "courseStudy.html?contentId="+common.getUrlParam("contentId")+"&courseType="+common.getUrlParam("courseType")+"&pageType="+common.getUrlParam("pageType");
 	}
 }		
 

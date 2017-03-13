@@ -11,6 +11,11 @@ common.course_type_alias = {
 	"课件图文"      : "content",
 	"h5图文"       : "content"
 };
+common.render_type = {
+	'标准图文':'article',
+	'视频图文':'video',
+	'课件图文':'figure',
+};
 common.ajaxPost = function(path,param,successback,failback){
 	var resturl = "http://test.strong365.com:80/welearning/api/";
 	param["companyCode"]='ruixue_test';
@@ -20,7 +25,7 @@ common.ajaxPost = function(path,param,successback,failback){
 	
 	console.log("接口是（"+path+")；请求前传递参数：");
 	console.dir(param);
-	$.ajax({
+	var obj = $.ajax({
 		url:resturl+path,
 		data:param,
 		type:'post',
@@ -38,7 +43,7 @@ common.ajaxPost = function(path,param,successback,failback){
 			}
 		}
 
-	});
+	}); return obj;
 }
 
 common.getCookie = function(key){

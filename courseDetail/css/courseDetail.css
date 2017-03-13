@@ -17,3 +17,13 @@
 #delChoose{float:left; margin-right:15px;}
 .yd-detailInfo .yd-detailInfo-btn span{float:left; margin-right:5px;}
 .yd-detailInfo .yd-courseCollection img{height:14px; cursor:pointer;}
+
+.yd-courseDetail-title{height:42px; font-size:22px; line-height:1em; padding:10px 0;}
+.yd-courseDetail-createtime{height:12px; font-size:12px; line-height:1em; margin-bottom:20px;}
+.yd-videoPlayer{width:100%; height:400px;}
+.video-js{width:100%!important; height:100%!important;}
+.video-js .vjs-big-play-button{left:50%; top:50%; margin-left:-1.5em; margin-top:-0.75em;}
+
+.yd-courseStudy-icon{margin:10px 0;}
+.yd-courseStudy-icon img[data-collection]{height:16px; cursor:pointer;}
+.yd-courseStudy-commentNum{display:inline-block; height:25px; padding-left:25px; background:url("../../common/images/icons.png") no-repeat -146px -47px; }

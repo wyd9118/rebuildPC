@@ -9,7 +9,7 @@
 		memberId:common.getCookie("memberId"),
 		categoryId:common.getUrlParam("categoryId") 
 	}
-	common.ajaxPost("courseCenterCategory/allCourseCategory",param,function(d){ console.dir(d.data);
+	common.ajaxPost("courseCenterCategory/allCourseCategory",param,function(d){
 		//$("#yd-mainmenu-tmpl").tmpl(d.data).appendTo(".yd-courseCenter-mainmenu");
 		var tmplate = '<li><a href="###" data-id="@id" parent-id="@parent_id">@name</a></li>'; 
 		$.each(d.data,function(){ 
@@ -24,6 +24,7 @@
 	$(".yd-left-menu")
 	.on("mouseenter",".yd-courseCenter-mainmenu>li>a",function(){
 		isCLK = false;
+		if(!sub_items[$(this).attr("data-id")]){return;}
 		$(".yd-courseCenter-submenu").empty();
 		$(".yd-courseCenter-submenu").show();
 		$(this).addClass("a-focus").parent().siblings().find("a").removeClass("a-focus");
@@ -33,7 +34,7 @@
 			$(".yd-courseCenter-submenu").append($li);
 		});
 	})
-	.on("mouseleave",$(this),function(){
+	.on("mouseleave",".yd-courseCenter-mainmenu>li>a",function(){
 		$(".yd-courseCenter-submenu").hide();
 		if(!isCLK){
 			$(".yd-courseCenter-mainmenu>li>a").removeClass("a-focus");
