@@ -2,6 +2,7 @@ var common = {};
 common.rootName = "rebuild";
 common.servleturl = "http://120.26.101.143:80/welearning/";
 common.cdn = "http://cdn.strong365.com:80/";
+common.resturl = "http://test.strong365.com:80/welearning/api/";
 common.course_type_alias = {
 	"scorm系列课程" : 'seriesCourse',
 	"h5系列课程"    : 'seriesCourse',
@@ -17,7 +18,6 @@ common.render_type = {
 	'课件图文':'figure',
 };
 common.ajaxPost = function(path,param,successback,failback){
-	var resturl = "http://test.strong365.com:80/welearning/api/";
 	param["companyCode"]='ruixue_test';
 	if(!param.certificate){
 		param["certificate"]=common.getCookie("certificate");
@@ -26,9 +26,10 @@ common.ajaxPost = function(path,param,successback,failback){
 	console.log("接口是（"+path+")；请求前传递参数：");
 	console.dir(param);
 	var obj = $.ajax({
-		url:resturl+path,
+		url:common.resturl+path,
 		data:param,
 		type:'post',
+		dataType:'json',
 		contentType:"application/x-www-form-urlencoded;charset=utf-8",
 		success:function(d){
 			console.log("接口是（"+path+")；请求后返回数据：")

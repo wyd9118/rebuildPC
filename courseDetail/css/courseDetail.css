@@ -27,3 +27,6 @@
 .yd-courseStudy-icon{margin:10px 0;}
 .yd-courseStudy-icon img[data-collection]{height:16px; cursor:pointer;}
 .yd-courseStudy-commentNum{display:inline-block; height:25px; padding-left:25px; background:url("../../common/images/icons.png") no-repeat -146px -47px; }
+
+.yd-imgsize{width:100%; height:500px;}
+.yd-detailMiddle table{width:100%;}

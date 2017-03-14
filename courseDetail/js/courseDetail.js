@@ -64,7 +64,6 @@ function dealCollection(contentId,courseType,obj){
 		if($(".yd-collectionNum i").text() != null){
 			collectionNum = parseInt($(".yd-collectionNum i").text());
 		}
-		console.log(collectionNum+"////"+isCollection)
 		if(eval(isCollection)){ 
 			$(".yd-collectionNum i").text(collectionNum-1);
 		}else{
