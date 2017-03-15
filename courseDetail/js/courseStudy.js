@@ -6,8 +6,11 @@ var createTimeFormat = function(time){
 
 function CourseStudy(){
 	this.contentId = common.getUrlParam("contentId");
-	this.courseType = common.getUrlParam("courseType"),
+	this.courseType = common.getUrlParam("courseType");
+	this.courseId = common.getUrlParam("courseId");
 	this.memberId = common.getCookie("memberId");
+	this.contentBrowId = "";
+	this.cache = {};
 }
 
 CourseStudy.prototype = {
@@ -31,6 +34,7 @@ CourseStudy.prototype = {
 		});
 	},
 	loadCourse:function(){
+		var _this = this;
 		var param = {
 			id:this.contentId,
 		};
@@ -39,6 +43,7 @@ CourseStudy.prototype = {
 			.then(function(d){
 				if(d.errorCode == 0){
 					resolve(d.data);
+					_this.cacheCourseList(d.data);
 				}else{
 					reject(d.errorMassage);
 				}
@@ -91,7 +96,7 @@ CourseStudy.prototype = {
 			});
 		});
 	},
-	loadCommentsNum(){
+	loadCommentsNum(){ //加载评论数
 		var param = {
 			id:this.contentId
 		};
@@ -109,7 +114,7 @@ CourseStudy.prototype = {
 			});
 		});
 	},
-	loadBrowNum(){
+	loadBrowNum(){ //加载观看人数
 		var param = {
 			id:this.contentId
 		};
@@ -127,7 +132,7 @@ CourseStudy.prototype = {
 			});
 		});
 	},
-	saveBrowRecord:function(){
+	saveBrowRecord:function(){ //记录浏览记录（观看人数加1）
 		var param = {
 			content_id:parseInt(this.contentId),
 			brower_id:parseInt(this.memberId),
@@ -139,6 +144,7 @@ CourseStudy.prototype = {
 			.then(function(d){
 				if(d.errorCode == 0){
 					resolve(d.data);
+					this.contentBrowId = d.data;
 				}else{
 					reject(d.errorMassage);
 				}
@@ -148,12 +154,110 @@ CourseStudy.prototype = {
 				reject(d);
 			});
 		});
+	},
+	saveProgress:function(){ //保存学习进度
+		this.cache['starttime'] = this.cache['starttime']||(new Date().getTime());
+		var endtime = new Date().getTime();
+		var times = endtime - this.cache['starttime'];
+		if(times>0){
+			var param = {
+				contentId:this.contentId,
+				courseId:this.courseId,
+				contentBrowId:this.contentBrowId,
+				memberId:this.memberId,
+				touchTime:times,
+			};
+			$.ajax({
+				url:common.restUrl + "courseStudyProcess/updateContentTimes",
+				data:param,
+				type:'post',
+				complete:function(d){ console.log(d)
+					this.cache['starttime'] = new Date(d).getTime();
+				}
+			})
+		}
+	},
+	cacheCourseList:function(data){
+		var _this = this;
+		var param = {
+				contentId:this.contentId,
+				memberId:this.memberId
+		};
+		if(data&&((data.type=='标准图文'&&data.originUrl) || data.type=='课件图文' || data.type=='H5图文')){
+			var courseUrl = "";
+			switch (data.type) {
+				case '课件图文':
+					courseUrl = "../content/content_viewcourse1.html"+window.location.search;
+					break;
+
+				case 'h5图文':
+					courseUrl = "../content/content_view_h5.html"+window.location.search;;
+					break;
+
+				case '标准图文':
+					courseUrl = data.originalUrl;
+					break;
+			}
+			_this.cache['cacheCourseLog'] = new Promise(function(resolve,reject){
+				common.ajaxPost("contentBrow/contentCompleteProgress",param)
+				.then(function(d){
+					if(d.errorCode == 0){
+						resolve([{
+							id: data.id,
+							series_course_id: data.id,
+							'name': null,
+							subDirectory: [
+								{
+									is_compulsory: '',
+									content_id: data.id,
+									url: courseUrl,
+									name: data.title,
+									learning_time: false,
+									course_catalog_id: '',
+									Course_process: d.data[0].progress
+								}
+							]
+						}]);
+					}else{
+						reject(d.errorMassage);
+					}
+				})
+				.fail(function(d){
+					reject(d);
+				});
+			});
+		}
+	},
+	loadCourseList:function(){ //加载课程目录
+		var _this = this;
+		var param = {
+			courseId:this.courseId,
+			memberId:this.memberId,
+		};
+		if(!_this.cache['cacheCourseLog']){
+			return new Promise(function(resolve,reject){
+				common.ajaxPost("seriesCourse/getMyCatalogsBycourseId",param)
+				.then(function(d){ //请求成功
+					if(d.errorCode == 0){
+						resolve(d.data);
+					}else{
+						reject(d.errorMassage);
+					}
+				})
+				.fail(function(d){ //请求失败
+					reject(d);
+				});
+			});
+		}else{
+			return _this.cache['cacheCourseLog'];
+		} 
 	}
 
 };
 
 
 $(function(){
+
 	var study = new CourseStudy();
 	$(".loading").fadeIn();
 	Promise.all([
@@ -166,7 +270,6 @@ $(function(){
 		
 	])
 	.then(function(d){
-		
 		if(!d[0]){
 			//alert("你没有学习该课程的权限！");
 			$(".loading").fadeOut(function(){
@@ -188,6 +291,9 @@ $(function(){
 			$(".yd-crumbPath").show();
 			$(".yd-detailMiddle").empty();
 			$("#study-tmpl").tmpl(data).appendTo(".yd-detailMiddle");
+			$(".yd-detailMiddle video").addClass("vjs-big-play-centered").each(function(){
+				videojs(this,{});
+			});
 			if(course.type == '标准图文'){ 
 				study.loadCourseBody().then(function(d){
 					var body = "";
@@ -197,12 +303,26 @@ $(function(){
 						body = "<img src="+common.dealImage(course.cover)+" class='yd-imgsize' alt=''>";
 					}
 					$(".yd-article").html(body);
-					var timg = $(".yd-detailMiddle section img").attr("src");
-					$(".yd-detailMiddle section img").attr("src","http://test.strong365.com"+timg);
+					var timg = $(".yd-detailMiddle .yd-article img").attr("src");
+					$(".yd-detailMiddle .yd-article img").attr("src","http://test.strong365.com"+timg);
+					$(".yd-detailMiddle video").addClass("vjs-big-play-centered").each(function(){
+						videojs(this,{});
+						var src = common.resolveUrl($(this).attr("src"));
+						$(this).attr("src",src);
+						$(this).find("source").attr("src",src);
+						$(this).attr("poster",common.resolveUrl(course.cover));
+					});
 				});
 			}
-			
-			//$("<script type='text/javascript' src='../common/js/video.min.js'></script>").appendTo(document.body)
+
+			study.loadCourseList().then(function(catalog){ console.dir(catalog)
+					var $html = $('#tab-content-tmpl').tmpl({data: catalog});
+					//$("#tab-content-tmpl").tmpl({data:d1});
+					//$("#tab-courseList").empty().append($data);
+				
+			});
+
+				
 		});
 		
 	});

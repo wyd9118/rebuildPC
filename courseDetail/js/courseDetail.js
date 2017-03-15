@@ -90,7 +90,7 @@ function learnChoose(obj){ //立即选修
 			
 		});
 	}else{
-		window.location.href = "courseStudy.html?contentId="+common.getUrlParam("contentId")+"&courseType="+common.getUrlParam("courseType")+"&pageType="+common.getUrlParam("pageType");
+		window.location.href = "courseStudy.html"+window.location.search;
 	}
 }		
 

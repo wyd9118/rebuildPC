@@ -22,46 +22,13 @@
 				</ul>
 				<div class="yd-courseBack"><a href="###" onclick="javascript:history.back();" class="yd-radius5px">返回</a></div>
 			</div>
-			<div class="yd-clear yd-detailMiddle">
-				<!-- <h2 class="yd-courseDetail-title">${course.title}</h2>
-				<div class="yd-courseDetail-createtime">${createTimeFormat(course.createTime)}</div>
-				{{if renderType == 'video'}}
-					<div class="yd-videoPlayer">
-						<video id="" width="100%" height="100%" class="video-js vjs-default-skin" poster="${common.dealImage(course.cover)}" controls data-setup={}>
-							<source src="${common.resolveUrl(course.audioUrl)}" type='video/mp4'>
-							<source src="../common/images/video.mp4" type='video/mp4'>
-						</video>
-					</div>
-				{{/if}}
-				
-				{{if renderType == 'figure'}}
-					<div class="">
-						<img src="${common.dealImage(cover)}">
-					</div>
-				{{/if}}
-				
-				{{if renderType == 'article'}}
-					<div class="">{{html body}}</div>
-				{{/if}}
-				
-				<div class="yd-courseStudy-icon">
-					{{if isCollection}}
-					<img src="../common/images/u1405.png" data-collection="${isCollection}" onclick="toggleCollection(${course.id},'${course.type}',$(this))">
-					{{else}}
-					<img src="../common/images/u1408.png" data-collection="${isCollection}" onclick="toggleCollection(${course.id},'${course.type}',$(this))">
-					{{/if}}
-					收藏 |
-					<span class="yd-courseStudy-commentNum">${commentsNum}</span>人评论 |
-					<span class="yd-courseStudy-brow">${browNum}</span>人观看
-				
-				</div> -->
-			</div>
+			<div class="yd-clear yd-detailMiddle"></div>
 			<script id="study-tmpl" type="text/x-jquery-tmpl">
 				<h2 class="yd-courseDetail-title">${course.title}</h2>
 				<div class="yd-courseDetail-createtime">${createTimeFormat(course.createTime)} &nbsp;&nbsp;&nbsp;&nbsp; ${course.author}</div>
 				{{if renderType == 'video'}}
 					<div class="yd-videoPlayer">
-						<video id="video" width="100%" height="100%" class="video-js vjs-default-skin" poster="${common.dealImage(course.cover)}" controls="true" data-setup={}  src="${common.resolveUrl(course.audioUrl)}">
+						<video id="video" width="100%" height="100%" class="video-js vjs-default-skin vjs-big-play-centered" poster="${common.dealImage(course.cover)}" controls="true" data-setup={}  src="${common.resolveUrl(course.audioUrl)}">
 							<source src="${common.resolveUrl(course.audioUrl)}" type='video/mp4'>
 							<source src="../common/images/video.mp4" type='video/mp4'>
 						</video>
@@ -69,7 +36,7 @@
 				{{/if}}
 
 				{{if renderType == 'figure'}}
-					<div class="">
+					<div>
 						<img src="${common.dealImage(course.cover)}" class="yd-imgsize">
 					</div>
 				{{/if}}
@@ -90,6 +57,120 @@
 
 				</div>
 			</script>
+
+			<div class="yd-courseStudy-tab">
+				<ul class="nav nav-tabs">
+					<li id="courseList" class="active">
+						<a href="#" data-toggle="tab">课程目录</a>
+					</li>
+					<li id="courseComment">
+						<a href="#" data-toggle="tab">课程评论</a>
+					</li>
+				</ul>
+
+				<div class="yd-tab-content">
+					<div id="tab-courseList">
+						<ol>
+							<li>
+								<h3>第一章 {{if name != null}}<span>${name}</span>{{/if}}</h3>
+								<ol>
+									<li>
+										<span class="yd-subname">${name}</span>
+										<i class="yd-subtime">
+											学习时长：${learning_time}
+										</i>
+										<a class="yd-subbtn" href="${url}" target="_blank">
+											立即学习
+										</a>
+									</li>
+									<li>
+										<span class="yd-subname">${name}</span>
+										<i class="yd-subtime">
+											学习时长：${learning_time}
+										</i>
+										<a class="yd-subbtn" href="${url}" target="_blank">
+											立即学习
+										</a>
+									</li>
+									<li>
+										<span class="yd-subname">${name}</span>
+										<i class="yd-subtime">
+											学习时长：${learning_time}
+										</i>
+										<a class="yd-subbtn" href="${url}" target="_blank">
+											立即学习
+										</a>
+									</li>
+								</ol>
+							</li>
+
+
+							<li>
+								<h3>第一章 {{if name != null}}<span>${name}</span>{{/if}}</h3>
+								<ol>
+									<li>
+										<span class="yd-subname">${name}</span>
+										<i class="yd-subtime">
+											学习时长：${learning_time}
+										</i>
+										<a class="yd-subbtn" href="${url}" target="_blank">
+											立即学习
+										</a>
+									</li>
+									<li>
+										<span class="yd-subname">${name}</span>
+										<i class="yd-subtime">
+											学习时长：${learning_time}
+										</i>
+										<a class="yd-subbtn" href="${url}" target="_blank">
+											立即学习
+										</a>
+									</li>
+									<li>
+										<span class="yd-subname">${name}</span>
+										<i class="yd-subtime">
+											学习时长：${learning_time}
+										</i>
+										<a class="yd-subbtn" href="${url}" target="_blank">
+											立即学习
+										</a>
+									</li>
+								</ol>
+							</li>
+						</ol>
+					</div>
+					<script id="tab-content-tmpl" type="text/x-jquery-tmpl">
+						<ol>
+							{{each data}}
+							<li>
+								<h3>第一章 {{if name != null}}<span>${name}</span>{{/if}}</h3>
+								<ol>
+								{{each subDirectory}}
+									<li>
+										<span class="yd-subname">${name}</span>
+										<i class="yd-subtime">
+											{{if learning_time != false}}
+											学习时长：${learning_time}
+											{{/if}}	
+										</i>
+										<a class="yd-subbtn" href="${url}" target="_blank">
+											{{if Course_process === -1}}
+											立即学习
+											{{if Course_process === 0}}
+											继续学习
+											{{else}}
+											重新学习
+											{{/if}}
+										</a>
+									</li>
+								{{/each}}
+								</ol>
+							</li>
+							{{/each}}
+						</ol>
+					</script>
+				</div>
+			</div>
 
 		</div>
 	</div>
