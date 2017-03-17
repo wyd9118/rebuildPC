@@ -156,6 +156,7 @@ CourseStudy.prototype = {
 		});
 	},
 	saveProgress:function(){ //保存学习进度
+		var _this = this;
 		this.cache['starttime'] = this.cache['starttime']||(new Date().getTime());
 		var endtime = new Date().getTime();
 		var times = endtime - this.cache['starttime'];
@@ -166,15 +167,15 @@ CourseStudy.prototype = {
 				contentBrowId:this.contentBrowId,
 				memberId:this.memberId,
 				touchTime:times,
-			};
-			$.ajax({
-				url:common.restUrl + "courseStudyProcess/updateContentTimes",
+			};  
+			common.ajaxAll({
+				path:"courseStudyProcess/updateContentTimes",
 				data:param,
-				type:'post',
-				complete:function(d){ console.log(d)
-					this.cache['starttime'] = new Date(d).getTime();
+				complete:function(d){ 
+					var dd = eval('('+d+')');
+					_this.cache['starttime'] = new Date(dd.data).getTime();  console.log(_this.cache['starttime']);
 				}
-			})
+			});
 		}
 	},
 	cacheCourseList:function(data){
@@ -314,15 +315,23 @@ $(function(){
 					});
 				});
 			}
-
-			study.loadCourseList().then(function(catalog){ console.dir(catalog)
-					var $html = $('#tab-content-tmpl').tmpl({data: catalog});
-					//$("#tab-content-tmpl").tmpl({data:d1});
-					//$("#tab-courseList").empty().append($data);
-				
+			if(course.type == '视频图文' || (course.type=='标准图文'&&!course.originalUrl)){
+				$("#courseList").remove();
+				$("#courseComment").addClass("active");
+			}
+			study.loadCourseList().then(function(d){ 
+				if(d){
+					var $data = $("#tab-content-tmpl").tmpl({data:d});
+					$("#tab-courseList").empty().append($data);
+				}
+			}).catch(function(err){
+				console.log("课程目录为空！");
 			});
 
-				
+			//保存学习进度
+			setInterval(function(){
+				study.saveProgress();
+			},10000);	
 		});
 		
 	});

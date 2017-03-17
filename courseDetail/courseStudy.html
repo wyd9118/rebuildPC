@@ -70,7 +70,7 @@
 
 				<div class="yd-tab-content">
 					<div id="tab-courseList">
-						<ol>
+						<!-- <ol>
 							<li>
 								<h3>第一章 {{if name != null}}<span>${name}</span>{{/if}}</h3>
 								<ol>
@@ -103,41 +103,7 @@
 									</li>
 								</ol>
 							</li>
-
-
-							<li>
-								<h3>第一章 {{if name != null}}<span>${name}</span>{{/if}}</h3>
-								<ol>
-									<li>
-										<span class="yd-subname">${name}</span>
-										<i class="yd-subtime">
-											学习时长：${learning_time}
-										</i>
-										<a class="yd-subbtn" href="${url}" target="_blank">
-											立即学习
-										</a>
-									</li>
-									<li>
-										<span class="yd-subname">${name}</span>
-										<i class="yd-subtime">
-											学习时长：${learning_time}
-										</i>
-										<a class="yd-subbtn" href="${url}" target="_blank">
-											立即学习
-										</a>
-									</li>
-									<li>
-										<span class="yd-subname">${name}</span>
-										<i class="yd-subtime">
-											学习时长：${learning_time}
-										</i>
-										<a class="yd-subbtn" href="${url}" target="_blank">
-											立即学习
-										</a>
-									</li>
-								</ol>
-							</li>
-						</ol>
+						</ol> -->
 					</div>
 					<script id="tab-content-tmpl" type="text/x-jquery-tmpl">
 						<ol>
@@ -156,6 +122,7 @@
 										<a class="yd-subbtn" href="${url}" target="_blank">
 											{{if Course_process === -1}}
 											立即学习
+											{{/if}}
 											{{if Course_process === 0}}
 											继续学习
 											{{else}}

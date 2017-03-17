@@ -47,6 +47,47 @@ common.ajaxPost = function(path,param,successback,failback){
 	}); return obj;
 }
 
+common.ajaxAll = function(param){ //param = {path:,data:,type:,dataType:,cache:,success:,error:,complete:,}
+	var data = param.data;
+	if(!data['companyCode']){
+		data['companyCode'] = "ruixue_test";
+	}
+	if(!data['certificate']){
+		data['certificate'] = common.getCookie("certificate");
+	}
+	console.log("接口是："+param.path+"; 请求前数据：\n");
+	console.dir(data);
+	$.ajax({
+		url:common.resturl+param.path,
+		data:data,
+		type:param.type?param.type:'post',
+		dataType:param.dataType?param.dataType:'json',
+		cache:(param.cache===false)?false:true,
+		success:function(d){ //请求成功
+			console.log("接口是："+param.path+"; 请求后数据：\n");
+			console.dir(d);
+			if(param.success){
+				param.success(d);
+			}
+		},
+		error:function(d){ //请求失败
+			console.log("接口是："+param.path+"; 请求后数据：\n");
+			console.dir(d);
+			if(param.error){
+				param.error(d);
+			}
+		},
+		complete:function(xhr,status){ //请求完成
+			console.log("接口是："+param.path+"; 请求后数据：\n");
+			console.dir(xhr.responseText);
+			if(param.complete){
+				param.complete(xhr.responseText);
+			}
+		},
+	});
+
+}
+
 common.getCookie = function(key){
 	return $.cookie(key);
 };
